@@ -6,6 +6,7 @@ installation in the src/main.py file.
 
 14/07/2012
 * Moved from svn to git
+* Bug fix in shellcode generator
 
 04/07/2012
 * Version 3.0 SQLBrute Edition
