@@ -110,17 +110,14 @@ while 1:
 		selection = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
 		if selection == '1' or selection == '':
 			payload = 'windows/meterpreter/reverse_tcp'
-			type = 'reverse'
 		elif selection == '2':
 			payload = 'windows/x64/meterpreter/reverse_tcp'
-			type = 'reverse'
 		elif selection == '3':
 			payload = 'windows/meterpreter/reverse_http'
 		elif selection == '4':
 			payload = 'windows/meterpreter/reverse_https'
 		elif selection == '5':
 			payload = 'windows/vncinject/reverse_tcp'
-			type = 'reverse'
 			
 		# get some details
 		#if selection == range(1,3) or selection == '':
