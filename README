@@ -1,0 +1,104 @@
+Metaplsoit Payload generator... For all the lazy people out there ;)
+Contacts - Matt Jones (matt.jones.85@gmail.com) - Jeff Markwart (ablackhippy@gmail.com)
+
+To get paygen up and running you need to define the path to your metasploit
+installation in the src/main.py file.
+
+14/07/2012
+* Moved from svn to git
+
+04/07/2012
+* Version 3.0 SQLBrute Edition
+	* Menu and code tweaks
+	* Added SQL brute module to common exploits
+	* Standardised info and errors
+
+23/06/2012
+* Adding support for libnotify
+	- currently only in powershell and shellcode modules. working on migrating
+	  to main.py file for program wide notifcations. to get this functionality
+	  make sure gtk2-engines-pixbuf & python-notify are installed.
+
+21/05/2012
+* Changed paygen from os.system to subprocess.Popen
+* Bug fixes
+
+09/05/2012
+* Password protected all checkouts from svn
+
+23/04/2012
+* Put PowerShell creation back in. payload2 is defined as generate_powershell function.
+
+21/04/2012
+* I took out the PowerShell creation part in powershell.py because payload2 wasn't set as variable. - jeff
+
+11/04/2012
+* Added module to check and exploit ms12_020 DoS vulnerability
+
+09/04/2012
+* Added option for bind meterpreter in powershell.py
+
+03/04/2012
+* Added a few more ascii banners
+* Added multi/handler yes/no option to pdfbackdoor, shellcode to xor module
+
+02/04/2012
+* Unified windows payloads menu
+* Merged reverse & bind listerner modules
+
+01/04/2012
+* Added metasploit payload injection into readable PDF's
+* Added backdoor executable generator
+
+31/03/2012
+* Added nmap scanner
+* SVN added (thanks for adding this matt, really great way to interact together)
+* Changed msfpath() in src/main.py to save us editing after every check in/out
+* Fixed no encoding option in windows_shellcode module
+
+30/03/2012
+* Added Shell to Xor.exe (Windows) 
+* Added Samba trans2open Overflow (Linux x86)
+* Added looping menus
+
+29/03/2012 - Version 2.4 - PowerShell Edition
+* Bind listener added by aBlackHippy
+* Powershell payload module added - Currently 100% AV evasion rate
+* Fixes and Tweaks
+
+26/03/2012
+* Added auto IP detection (using code from SET)
+* Added defaults for ports, ip, encoding selections
+* Tweaked shellcode generation
+* Removed linux payload section
+* Uniformity tweaks
+
+19/03/2012
+* Added MSF shellcode generator
+* bug fixes and tweaks
+
+15/03/2012
+* fixed ip & hostname issue in windows.py
+* removed Debasis Mohanty's ms08_067 exploit and replaced with custom msf rc file
+
+15/03/2012
+* multi-encode option added for windows payloads
+
+14/03/2012
+* Tweaked code for payload creation, removed un-needed steps for certain payloads
+* Added OS detection. Paygen only currently runs on *nix systems
+
+12/03/2012
+* Added rc file creation for listeners. Sets ExitOnSession and AutoRunScript
+
+05/03/2012
+* Added asp payload creation
+
+01/03/2012
+* Paygen now using SVN (temporarily down)
+
+27/02/2012
+* Moved php encoder to use msfvenom
+* Basic port scanner added
+* Implemented Debasis Mohanty's ms08_067 exploit
+* Implemented stand alone listener
