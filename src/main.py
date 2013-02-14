@@ -60,10 +60,11 @@ def localip():
 # grab ip of adapter. 
 # ripped from SET. Thanks Dave!
 def iface_ip():
-	iface = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	iface.connect(('google.com', 0))
-	iface.settimeout(2)
-	iface = iface.getsockname()[0]
+	#iface = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+	#iface.connect(('google.com', 0))
+	#iface.settimeout(2)
+	#iface = iface.getsockname()[0]
+	iface = raw_input("\n[+] Enter IP: ")
 	return iface
 
 # update metasploit
