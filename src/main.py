@@ -57,21 +57,25 @@ def install_msf():
 	if os.name == 'posix':
 		# check apt-get is installed
 		if os.path.exists('/usr/bin/apt-get'):
+			PrintInfo("Debian based OS detected")
+			time.sleep(1)
 			# check for git
-			if not os.path.exists("/usr/bin/git"):
-				install_git = raw_input("[!] Git not installed. Install now? (Y/N): ")
-				if install_git == 'Y' or install_git =="y'":
+			if not os.path.exists("/usr/bin/git1"):
+				install_git = raw_input(PrintInfo("Git not installed. Install now? (Y/N): "))
+				if install_git == 'Y' or install_git == 'y':
+					PrintInf("Installing GIT\n")
 					subprocess.Popen("sudo apt-get install git", shell=True).wait()
 				else:
-					exit(1)
-		else:
-			PrintError("MSF Auto install currently only for debian based systems\n.")
-			exit(1)
-					
-		# grab metasploit
-		tools_path = os.getenv('HOME') + "tools/"
-		PrintInfo("Grabbing Metasploit Framework\n")
+					PGExit()
+			else:
+				print "Git is installed. Continuing...."
+						
+		PrintInfo("Grabbing Metasploit")
 		subprocess.Popen("git clone https://github.com/rapid7/metasploit-framework.git %s/msf" % tools_path, shell=True).wait()
+
+	else:
+		PrintError("Auto MSF install is not supported on this platform\n")
+		PGExit()
 
 # define local ip for mult handler
 # you can leave this as 0.0.0.0 if you wish
