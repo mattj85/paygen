@@ -12,7 +12,8 @@ from time import sleep
 
 # check msf path is valid
 if not os.path.isdir(msfpath()):
-	PrintError("Cannot find metasploit. Please check set your installation path in src/main.py\n")
+	PrintError("Cannot find metasploit. Please check set your installation path in src/main.py")
+	PrintError("To install run: sudo python paygen.py --install-msf\n")
 	exit(1)
 
 # exit PG if not a *nix system

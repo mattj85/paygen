@@ -43,7 +43,7 @@ def msfpath():
 
 	# little fix to save re-editing after every check in/out
 	if os.getenv('HOME') != '/root':
-		msfpath = '%s/tools/msf' % os.getenv('HOME')
+		msfpath = '%s/tools/msf3' % os.getenv('HOME')
 	else:
 		# for backtrack
 		msfpath = '/opt/metasploit/msf3'
@@ -61,9 +61,16 @@ def install_msf():
 				install_git = raw_input("[!] Git not installed. Install now? (Y/N): ")
 				if install_git == 'Y' or install_git =="y'":
 					subprocess.Popen("sudo apt-get install git", shell=True).wait()
+				else:
+					exit(1)
+		else:
+			PrintError("MSF Auto install currently only for debian based systems\n.")
+			exit(1)
 					
 		# grab metasploit
-		pass
+		tools_path = os.getenv('HOME') + "tools/"
+		PrintInfo("Grabbing Metasploit Framework\n")
+		subprocess.Popen("git clone https://github.com/rapid7/metasploit-framework.git %s/msf" % tools_path, shell=True).wait()
 
 # define local ip for mult handler
 # you can leave this as 0.0.0.0 if you wish
