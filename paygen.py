@@ -10,19 +10,20 @@ from src.main import *
 from sys import exit, argv
 from time import sleep
 
-# check for msf install argument
-try:
-	if argv[1] == "--install-msf":
-		install_msf()
-except IndexError:
-	PrintError("Cannot find metasploit. Please check set your installation path in src/main.py")
-	PrintError("To install run: sudo python paygen.py --install-msf\n")
-	exit(1)
-
 # exit PG if not a *nix system
 if system_type() != 'posix':
 	PrintError("Sorry PayGen is currently for *nix only systems\n")
 	exit(1)
+
+# check for msf install
+if not os.path.exists(msfpath()):
+	try:
+		if argv[1] == "--install-msf":
+			install_msf()
+	except IndexError:
+		PrintError("Cannot find metasploit. Please check set your installation path in src/main.py")
+		PrintError("To install run: sudo python paygen.py --install-msf\n")
+		exit(1)
 else:
 	while 1:
 		# banner

@@ -8,7 +8,7 @@ from sys import exit, platform
 
 class details:
 	authors = "Matt Jones & Jeff Markwart"
-	version = "3.1"
+	version = "3.0.1"
 
 # get system type
 # paygen currently only for *nix systems
@@ -101,7 +101,7 @@ def iface_ip():
 
 # update metasploit
 def update_msf():
-	subprocess.Popen('svn up %s' % msfpath(), shell=True).wait()
+	subprocess.Popen('ruby %s/msfupdate' % msfpath(), shell=True).wait()
 	
 # standard paygen exit
 def PGExit():
