@@ -3,11 +3,12 @@
 # paygen config file
 
 import os, socket, subprocess
+from time import sleep
 from sys import exit, platform
 
 class details:
 	authors = "Matt Jones & Jeff Markwart"
-	version = "3.0"
+	version = "3.1"
 
 # get system type
 # paygen currently only for *nix systems
