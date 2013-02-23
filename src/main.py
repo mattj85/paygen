@@ -58,7 +58,7 @@ def install_msf():
 		# check apt-get is installed
 		if os.path.exists('/usr/bin/apt-get'):
 			PrintInfo("Debian based OS detected")
-			time.sleep(1)
+			sleep(1)
 			# check for git
 			if not os.path.exists("/usr/bin/git"):
 				install_git = raw_input(PrintInfo("Git not installed. Install now? (Y/N): "))
@@ -68,7 +68,7 @@ def install_msf():
 				else:
 					PGExit()
 			else:
-				print "Git is installed. Continuing...."
+				PrintInfo("Git is installed. Continuing")
 						
 		PrintInfo("Grabbing Metasploit")
 		tools_path = os.getenv('HOME')+"/tools"
