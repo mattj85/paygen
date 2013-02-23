@@ -8,6 +8,7 @@ installation in the src/main.py file.
 * Added support for getting IP in OS X.
 	- Currently requires user input for IP on OS X. Linux systems uses old method
 	  of grabbing IP from google (as in set).
+* Added auto installer function fot git and msf
 
 14/07/2012
 * Moved from svn to git

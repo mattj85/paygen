@@ -52,24 +52,26 @@ def msfpath():
 	# return path
 	return msfpath
 	
-# auto install git / msf - work in progress
 def install_msf():
 	if platform == 'linux2':
+		
 		# check apt-get is installed
 		if os.path.exists('/usr/bin/apt-get'):
 			PrintInfo("Debian based OS detected")
 			sleep(1)
+			
 			# check for git
 			if not os.path.exists("/usr/bin/git"):
 				install_git = raw_input(PrintInfo("Git not installed. Install now? (Y/N): "))
 				if install_git == 'Y' or install_git == 'y':
-					PrintInf("Installing GIT\n")
+					PrintInfo("Installing git\n")
 					subprocess.Popen("sudo apt-get install git", shell=True).wait()
 				else:
 					PGExit()
 			else:
 				PrintInfo("Git is installed. Continuing")
 						
+		# pull metasploit
 		PrintInfo("Grabbing Metasploit")
 		tools_path = os.getenv('HOME')+"/tools"
 		subprocess.Popen("git clone https://github.com/rapid7/metasploit-framework.git %s/msf" % tools_path, shell=True).wait()
