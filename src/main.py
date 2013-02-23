@@ -51,6 +51,12 @@ def msfpath():
 	# return path
 	return msfpath
 	
+def install_msf():
+	if os.name == 'posix':
+		# check apt-get is installed
+		if os.path.exists('/usr/bin/apt-get'):
+			print True
+
 # define local ip for mult handler
 # you can leave this as 0.0.0.0 if you wish
 def localip():
