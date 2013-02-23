@@ -44,7 +44,7 @@ def msfpath():
 
 	# little fix to save re-editing after every check in/out
 	if os.getenv('HOME') != '/root':
-		msfpath = '%s/tools/msf3' % os.getenv('HOME')
+		msfpath = '%s/tools/msf' % os.getenv('HOME')
 	else:
 		# for backtrack
 		msfpath = '/opt/metasploit/msf3'
@@ -54,13 +54,13 @@ def msfpath():
 	
 # auto install git / msf - work in progress
 def install_msf():
-	if os.name == 'posix':
+	if platform == 'linux2':
 		# check apt-get is installed
 		if os.path.exists('/usr/bin/apt-get'):
 			PrintInfo("Debian based OS detected")
 			time.sleep(1)
 			# check for git
-			if not os.path.exists("/usr/bin/git1"):
+			if not os.path.exists("/usr/bin/git"):
 				install_git = raw_input(PrintInfo("Git not installed. Install now? (Y/N): "))
 				if install_git == 'Y' or install_git == 'y':
 					PrintInf("Installing GIT\n")
@@ -71,10 +71,11 @@ def install_msf():
 				print "Git is installed. Continuing...."
 						
 		PrintInfo("Grabbing Metasploit")
+		tools_path = os.getenv('HOME')+"/tools"
 		subprocess.Popen("git clone https://github.com/rapid7/metasploit-framework.git %s/msf" % tools_path, shell=True).wait()
 
 	else:
-		PrintError("Auto MSF install is not supported on this platform\n")
+		PrintError("Auto MSF install is not supported on this platform")
 		PGExit()
 
 # define local ip for mult handler

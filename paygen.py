@@ -7,7 +7,7 @@
 import os
 from src import menus
 from src.main import *
-from sys import exit
+from sys import exit, argv
 from time import sleep
 
 # check msf path is valid
@@ -21,11 +21,17 @@ if system_type() != 'posix':
 	PrintError("Sorry PayGen is currently for *nix only systems\n")
 	exit(1)
 else:
+	# check for msf install argument
+	try:
+		if argv[1] == "--install-msf":
+			install_msf()
+	except IndexError:
+		pass
+		
 	while 1:
 		# banner
 		clear()
 		menus.show_banner()
-		install_msf()
 
 		try:
 			# display menu and grab user selections
