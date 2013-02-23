@@ -3,7 +3,7 @@
 # paygen config file
 
 import os, socket, subprocess
-from sys import exit
+from sys import exit, platform
 
 class details:
 	authors = "Matt Jones & Jeff Markwart"
@@ -60,12 +60,15 @@ def localip():
 # grab ip of adapter. 
 # ripped from SET. Thanks Dave!
 def iface_ip():
-	#iface = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	#iface.connect(('google.com', 0))
-	#iface.settimeout(2)
-	#iface = iface.getsockname()[0]
-	iface = raw_input("\n[+] Enter IP: ")
-	return iface
+	if platform != 'darwin'
+		iface = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+		iface.connect(('google.com', 0))
+		iface.settimeout(2)
+		iface = iface.getsockname()[0]
+		return iface
+	else:
+		iface = raw_input("\n[+] Enter IP: ")
+		return iface
 
 # update metasploit
 def update_msf():
