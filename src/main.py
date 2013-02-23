@@ -55,7 +55,14 @@ def install_msf():
 	if os.name == 'posix':
 		# check apt-get is installed
 		if os.path.exists('/usr/bin/apt-get'):
-			print True
+			# check for git
+			if not os.path.exists("/usr/bin/git"):
+				install_git = raw_input("[!] Git not installed. Install now? (Y/N): ")
+				if install_git == 'Y' or install_git =="y'":
+					subprocess.Popen("sudo apt-get install git", shell=True).wait()
+					
+		# grab metasploit
+		pass
 
 # define local ip for mult handler
 # you can leave this as 0.0.0.0 if you wish
