@@ -51,6 +51,7 @@ def msfpath():
 	# return path
 	return msfpath
 	
+# auto install git / msf - work in progress
 def install_msf():
 	if os.name == 'posix':
 		# check apt-get is installed
@@ -72,7 +73,7 @@ def localip():
 
 # grab ip of adapter. 
 # ripped from SET. Thanks Dave!
-def iface_ip():
+def iface_ip():	
 	if platform != 'darwin':
 		iface = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		iface.connect(('google.com', 0))

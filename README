@@ -4,6 +4,11 @@ Contacts - Matt Jones (matt.jones.85@gmail.com) - Jeff Markwart (ablackhippy@gma
 To get paygen up and running you need to define the path to your metasploit
 installation in the src/main.py file.
 
+23/02/2013
+* Added support for getting IP in OS X.
+	- Currently requires user input for IP on OS X. Linux systems uses old method
+	  of grabbing IP from google (as in set).
+
 14/07/2012
 * Moved from svn to git
 * Bug fix in shellcode generator
