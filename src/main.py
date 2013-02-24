@@ -37,20 +37,14 @@ class colours:
 	green = '\033[32m'
 	reset = '\033[0;0m'
 		
-# define path to msf installation
 def msfpath():
-	# uncomment the following section for static msf path
-	# msfpath = ''
-
-	# little fix to save re-editing after every check in/out
-	if os.getenv('HOME') != '/root':
-		msfpath = '%s/tools/msf' % os.getenv('HOME')
-	else:
-		# for backtrack
-		msfpath = '/opt/metasploit/msf3'
-	
-	# return path
-	return msfpath
+	with open('config/paygen_config') as config:
+		for line in config:
+			msfmatch = re.match("MSFPATH", line)
+			if msfmatch:
+				msfpath = re.sub("\"", "", line)
+				msfpath = re.sub("MSFPATH=", "", msfpath)
+				return msfpath.rstrip()
 	
 def install_msf():
 	if platform == 'linux2':
