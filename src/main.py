@@ -88,7 +88,6 @@ def localip():
 	return localip
 
 # grab ip of adapter. 
-# ripped from SET. Thanks Dave!
 def iface_ip():	
 	if platform != 'darwin':
 		iface = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
