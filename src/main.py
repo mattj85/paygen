@@ -9,9 +9,8 @@ from sys import exit, platform
 
 class details:
 	authors = "Matt Jones & Jeff Markwart"
-	version = "3.0.1"
+	version = "3.0.2"
 
-# get system type
 # paygen currently only for *nix systems
 def system_type():
 	return os.name
@@ -54,7 +53,7 @@ def msfpath():
 				return msfpath.rstrip()
 	
 def install_msf():
-	if platform == 'linux2':
+	if platform != 'darwin':
 		
 		# check apt-get is installed
 		if os.path.exists('/usr/bin/apt-get'):
@@ -83,9 +82,9 @@ def install_msf():
 
 # define local ip for mult handler
 # you can leave this as 0.0.0.0 if you wish
-def localip():
-	localip = '0.0.0.0'
-	return localip
+#def localip():
+#	localip = '0.0.0.0'
+#	return localip
 
 # grab ip of adapter. 
 def iface_ip():	

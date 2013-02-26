@@ -41,7 +41,7 @@ Please make a selection:
 """ +main.colours.bold + main.colours.green + """Full AV Bypass:""" + main.colours.reset + """
 [7] powershell payload (best)
 
-[*] Hit ^c to go back
+[*] Hit ^C to go back
 """
 
 def win_menu1():
@@ -79,7 +79,7 @@ Please select a payload:
 [3] shell/reverse_tcp
 [4] shell/bind_tcp
 
-[*] Hit ^c to go back
+[*] Hit ^C to go back
 """
 
 def php_menu():
@@ -91,7 +91,7 @@ Please select a payload:
 [2] meterpreter_reverse_tcp
 [3] meterpreter/reverse_tcp - base64 encoded (best/default)
 
-[*] Hit ^c to go back
+[*] Hit ^C to go back
 """
 
 def asp_menu():
