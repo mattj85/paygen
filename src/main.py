@@ -3,6 +3,7 @@
 # paygen config file
 
 import os, socket, subprocess, re
+from gntp.notifier import mini as growl
 from time import sleep
 from sys import exit, platform
 
@@ -29,6 +30,12 @@ def PrintError(message):
 	
 def PrintFailed(message):
 	print "[-] %s" % message
+
+#
+# testing growl notifications for os x - Matt 25/02/2013
+#
+def GrowlMessage(message):
+	growl(message, title="Paygen")
 
 # define some colours
 class colours:
@@ -88,14 +95,24 @@ def iface_ip():
 		iface.connect(('google.com', 0))
 		iface.settimeout(2)
 		iface = iface.getsockname()[0]
-		return iface
 	else:
 		iface = raw_input("\n[+] Enter IP: ")
 		while is_valid_ipv4(iface) == False:
 			PrintError("Invalid IP!")
 			iface = raw_input("\n[+] Enter IP: ")
 			if is_valid_ipv4(iface) == True:
-				return iface
+				break
+		
+		return iface
+				
+def default_lport():
+	with open("config/paygen_config") as config:
+		for line in config:
+			match = re.match("DEFAULT_LPORT=", line)
+			if match:
+				lport = re.sub("\"", lport)
+				lport = re.sub("DEFAULT_LPORT=", lport)
+				return lport.rstrip()
 
 # update metasploit
 def update_msf():
@@ -103,7 +120,7 @@ def update_msf():
 	
 # standard paygen exit
 def PGExit():
-	print "%s%s\nExiting PayGen....\n%s" % (colours.bold, colours.red, colours.reset)
+	PrintInfo("Exiting Paygen\n")
 	exit(1)
 	
 def default_wordlist():
