@@ -78,7 +78,7 @@ while 1:
 			break
 	
 		else:
-			PrintInfo("Payload created in your /tmp directory")
+			Notify("Payload created in your /tmp directory", "2")
 			
 			# return to main
 			EntContinue()

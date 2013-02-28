@@ -7,9 +7,17 @@ from gntp.notifier import mini as growl
 from time import sleep
 from sys import exit, platform
 
+# details
 class details:
 	authors = "Matt Jones & Jeff Markwart"
 	version = "3.0.2"
+
+# define some colours
+class colours:
+	bold = '\033[1m'
+	red = '\033[31m'
+	green = '\033[32m'
+	reset = '\033[0;0m'
 
 # paygen currently only for *nix systems
 def system_type():
@@ -31,17 +39,45 @@ def PrintFailed(message):
 	print "[-] %s" % message
 
 #
-# testing growl notifications for os x - Matt 25/02/2013
+# testing os notifications for os x / linux - Matt 25/02/2013
+#				
+def Notify(message, type):
+	with open('config/paygen_config') as config:
+		for line in config:
+			notifymatch = re.match("NOTIFICATIONS=", line)
+			if notifymatch:
+				notify = re.sub("\"", "", line)
+				notify = re.sub("NOTIFICATIONS=", "", notify).rstrip()
+	
+	if notify == '1':
+		if platform == 'darwin':
+			try:
+				from gntp.notifier import mini as growlnotify
+				growl = True
+				if type == "1":
+					if growl:
+						growlnotify(message, title="PayGen")
+				if type == "2":
+					if growl:
+						growlnotify(message, title="PayGen")
+			except ImportError:
+				if type == "1":			
+					print colours.bold + colours.red + "\n[!] %s" % message + colours.reset
+				if type == "2":
+					print colours.bold + colours.green + "\n[+] %s" % message + colours.reset
+		else:
+			if type == "1":			
+				print colours.bold + colours.red + "\n[!] %s" % message + colours.reset
+			if type == "2":
+				print colours.bold + colours.green + "\n[+] %s" % message + colours.reset
+	else:
+		if type == "1":			
+			print colours.bold + colours.red + "\n[!] %s" % message + colours.reset
+		if type == "2":
+			print colours.bold + colours.green + "\n[+] %s" % message + colours.reset
 #
-def GrowlMessage(message):
-	growl(message, title="Paygen")
-
-# define some colours
-class colours:
-	bold = '\033[1m'
-	red = '\033[31m'
-	green = '\033[32m'
-	reset = '\033[0;0m'
+# End
+#
 		
 def msfpath():
 	with open('config/paygen_config') as config:
@@ -79,12 +115,6 @@ def install_msf():
 	else:
 		PrintError("Auto MSF install is not supported on this platform")
 		PGExit()
-
-# define local ip for mult handler
-# you can leave this as 0.0.0.0 if you wish
-#def localip():
-#	localip = '0.0.0.0'
-#	return localip
 
 # grab ip of adapter. 
 def iface_ip():	
