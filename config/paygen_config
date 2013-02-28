@@ -5,3 +5,6 @@ MSFPATH="/opt/metasploit/msf3
 
 # Default listener port
 DEFAULT_LPORT="4444"
+
+# Use growl / libnotify notfications - [TESTING]
+NOTIFICATIONS=0
