@@ -1,7 +1,7 @@
 # Default confiuration file for paygen
 
 # Set metasploit path (no trialing /)
-MSFPATH="/Users/matt/tools/msf"
+MSFPATH="/opt/metasploit/msf3
 
 # Default listener port
 DEFAULT_LPORT="4444"
