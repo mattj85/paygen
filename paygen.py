@@ -39,7 +39,7 @@ else:
 			# display menu and grab user selections
 			menus.pl_menu()
 			selection = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
-								
+
 			# payloads section
 			# windows
 			if selection == '1':

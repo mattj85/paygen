@@ -16,7 +16,7 @@ def system_type():
 	return os.name
 	
 def clear():
-	subprocess.Popen("clear", shell=True).wait()
+	subprocess.call(["clear"])
 	
 def EntContinue():
 	raw_input("\nPress %sENTER%s to continue" % (colours.bold, colours.reset))
@@ -161,3 +161,6 @@ def is_valid_ipv4(ip):
         $
     """, re.VERBOSE | re.IGNORECASE)
     return pattern.match(ip) is not None
+
+def getPID():
+	return os.getpid()
