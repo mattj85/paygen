@@ -107,7 +107,9 @@ while 1:
 		key = generate_random_string(10, 25)
 		PrintInfo("Using random key %s" % key)
 		encrypted = xor_string(shellcode, key)
+		print encrypted
 		xor = hexlify(encrypted)
+		print xor
 		sleep(1)
 	
 		PrintInfo("Shellcode encoded")
