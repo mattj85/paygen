@@ -3,7 +3,6 @@
 # paygen config file
 
 import os, socket, subprocess, re
-from gntp.notifier import mini as growl
 from time import sleep
 from sys import exit, platform
 
