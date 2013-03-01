@@ -193,3 +193,8 @@ def is_valid_ipv4(ip):
 
 def getPID():
 	return os.getpid()
+	
+def generate_random_string(low, high):
+    length = random.randint(low, high)
+    letters = string.ascii_letters+string.digits
+    return ''.join([random.choice(letters) for _ in range(length)])

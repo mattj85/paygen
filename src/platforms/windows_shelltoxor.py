@@ -104,7 +104,8 @@ while 1:
 			PrintInfo("Encoding shellcode")
 			sleep(1)
 
-		key = 'PayGen'
+		key = generate_random_string(5, 10)
+		PrintInfo("Using random key %s" % key)
 		encrypted = xor_string(shellcode, key)
 		xor = hexlify(encrypted)
 		sleep(1)
