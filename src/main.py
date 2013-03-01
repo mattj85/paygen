@@ -9,7 +9,7 @@ from sys import exit, platform
 # details
 class details:
 	authors = "Matt Jones & Jeff Markwart"
-	version = "3.0.2"
+	version = "3.0.4"
 
 # define some colours
 class colours:
@@ -41,6 +41,13 @@ def PrintFailed(message):
 # testing os notifications for os x / linux - Matt 25/02/2013
 #				
 def Notify(message, type):
+	
+	def defaultNotification(type):
+		if type == "1":			
+			print colours.bold + colours.red + "\n[!] %s" % message + colours.reset
+		if type == "2":
+			print colours.bold + colours.green + "\n[+] %s" % message + colours.reset
+	
 	with open('config/paygen_config') as config:
 		for line in config:
 			notifymatch = re.match("NOTIFICATIONS=", line)
@@ -60,20 +67,25 @@ def Notify(message, type):
 					if growl:
 						growlnotify(message, title="PayGen")
 			except ImportError:
-				if type == "1":			
-					print colours.bold + colours.red + "\n[!] %s" % message + colours.reset
-				if type == "2":
-					print colours.bold + colours.green + "\n[+] %s" % message + colours.reset
+				defaultNotification(type)
+		elif platform == 'linux2':
+			try:
+				import pynotify1
+				import pygtk
+				pygtk.require('2.0')
+				if not pynotify.init("PayGen"):
+					pass
+				
+				n = pynotify.Notification(message)
+		
+				if not n.show():
+					pass
+			except:
+				defaultNotification(type)
 		else:
-			if type == "1":			
-				print colours.bold + colours.red + "\n[!] %s" % message + colours.reset
-			if type == "2":
-				print colours.bold + colours.green + "\n[+] %s" % message + colours.reset
+			defaultNotification(type)
 	else:
-		if type == "1":			
-			print colours.bold + colours.red + "\n[!] %s" % message + colours.reset
-		if type == "2":
-			print colours.bold + colours.green + "\n[+] %s" % message + colours.reset
+		defaultNotification(type)
 #
 # End
 #
