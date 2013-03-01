@@ -34,7 +34,7 @@ Please make a selection:
 [1] standard msf payloads
 [2] asp embeded payload
 [3] shellcode generator
-[4] shellcode generator (xor encryption)
+[4] xor obfuscated executable
 [5] backdoored executable
 [6] pdf embeded payload
 
