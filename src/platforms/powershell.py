@@ -129,9 +129,9 @@ while 1:
 			port = '8080'
 			
 		# create payload bat file in /tmp
-		PrintInfo("Creating /tmp/paygen-pl.bat")
+		PrintInfo("Creating output/paygen-pl.bat")
 		payload2 = generate_payload(payload, ipaddr, port)
-		payloadfile = "/tmp/paygen-pl.bat"
+		payloadfile = "output/paygen-pl.bat"
 		fw = open(payloadfile, "w")
 		fw.write("@echo off\n")
 		fw.write("\n")

@@ -58,7 +58,7 @@ while 1:
 			sleep(3)
 			
 			# create windows shellcode file
-			winshellcode = "/tmp/shellcode.txt"
+			winshellcode = "output/shellcode.txt"
 			fw = open(winshellcode, "w")
 			fw.write(shellcode)
 			fw.close()
@@ -81,7 +81,7 @@ while 1:
 				pass
 
 			# return to main
-			PrintInfo("File shellcode.txt created in /tmp")
+			PrintInfo("File shellcode.txt created in output directory")
 			raw_input("\nPress %sENTER%s to continue" % (colours.bold, colours.reset))
 			break
 		elif encoding == '2':
@@ -92,14 +92,14 @@ while 1:
 			sleep(3)
 
 			# create windows shellcode file
-                        winshellcode = "/tmp/shellcode.txt"
+                        winshellcode = "output/shellcode.txt"
                         fw = open(winshellcode, "w")
                         fw.write(shellcode)
                         fw.close()
                         sleep(1)
 
                         # return to main
-                        PrintInfo("File shellcode.txt created in /tmp")
+                        PrintInfo("File shellcode.txt created in output directory")
                         EntContinue()
                         break
 

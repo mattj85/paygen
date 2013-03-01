@@ -38,8 +38,9 @@ Please make a selection:
 [5] backdoored executable
 [6] pdf embeded payload
 
-""" +main.colours.bold + main.colours.green + """Full AV Bypass:""" + main.colours.reset + """
+""" +main.colours.bold + main.colours.green + """Powershell:""" + main.colours.reset + """
 [7] powershell payload (best)
+[8] Reverse / bind shell
 
 [*] Hit ^C to go back
 """

