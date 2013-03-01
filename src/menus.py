@@ -283,7 +283,7 @@ def show_banner():
 | |_) / _` | | | | |  _ / _ \ '_ \ 
 |  __/ (_| | |_| | |_| |  __/ | | |
 |_|   \__,_|\__, |\____|\___|_| |_|
-            |___/  SQLBrute Edition
+            |___/ Yippee-ki-yay Edition
 """ % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset)
 
 	if banner == 2:
@@ -291,7 +291,7 @@ def show_banner():
   _____  _______ __   __  ______ _______ __   _
  |_____] |_____|   \_/   |  ____ |______ | \  |
  |       |     |    |    |_____| |______ |  \_|
-                               SQLBrute Edition
+                          Yippee-ki-yay Edition
 """ % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset)
 
 	if banner == 3:
@@ -300,7 +300,7 @@ def show_banner():
 ||P |||a |||y |||G |||e |||n ||
 ||__|||__|||__|||__|||__|||__||
 |/__\|/__\|/__\|/__\|/__\|/__\|
-               SQLBrute Edition
+          Yippee-ki-yay Edition
 """ % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset)
 
 	if banner == 4:
@@ -310,7 +310,7 @@ def show_banner():
  / /_)/ _` | | | |/ /_\/ _ \ '_ \ 
 / ___/ (_| | |_| / /_\  __/ | | |
 \/    \__,_|\__, \____/\___|_| |_|
-            |___/ SQLBrute Edition
+            |___/Yippee-ki-yay Edition
 """ % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset)
 
 	if banner == 5:
@@ -319,5 +319,5 @@ def show_banner():
 (  _ \ /__\ ( \/ )/ __)( ___)( \( )
  )___//(__)\ \  /( (_-. )__)  )  ( 
 (__) (__)(__)(__) \___/(____)(_)\_)
-                   SQLBrute Edition
+              Yippee-ki-yay Edition
 """ % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset)
