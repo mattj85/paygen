@@ -2,7 +2,7 @@
 #
 # paygen config file
 
-import os, socket, subprocess, re
+import os, socket, subprocess, re, random, string
 from time import sleep
 from sys import exit, platform
 
