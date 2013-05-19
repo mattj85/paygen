@@ -8,29 +8,29 @@
 # I set this up so I can utilize quick nmap scans to see what services are open.
 # You can ultimatly set this up any way you want. this is just a template - jmarkwart
 
-import os
-import subprocess
-from os import system
+import subprocess as subp
 from main import EntContinue, clear
 from time import sleep
 
 
 while 1:
-	try:
-		clear()
-		target = 0
-		while target == 0:
-			target = raw_input("Please enter the target IP / CIDR range: ") # IP/CIDR range to scan
-	
-		# options for nmap
-		stealth = "-sS"
-		OS = "-O"
-		subprocess.Popen("sudo nmap -PN -sC -T5 %s %s %s" % (target, stealth, OS), shell=True).wait()
-		
-		sleep(1)
-		EntContinue()
-	
-		# back to main
-		break
-	except KeyboardInterrupt:
-		break
+    try:
+        clear()
+        target = 0
+        while target == 0:
+            target = raw_input("Please enter the target IP / CIDR range: ") # IP/CIDR range to scan
+
+        # options for nmap
+        stealth = "-sS"
+        OS = "-O"
+        scanOut = subp.Popen(["nmap", "-PN", "-sC", "-T5", "%s", "%s", "%s"] % (target, stealth, OS), stdout=subp.PIPE)
+        for lines in scanOut.stdout:
+            print "[+]", lines
+
+        sleep(1)
+        EntContinue()
+
+        # back to main
+        break
+    except KeyboardInterrupt:
+        break
