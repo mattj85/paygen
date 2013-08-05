@@ -4,6 +4,9 @@ Contacts - Matt Jones (matt.jones.85@gmail.com) - Jeff Markwart (ablackhippy@gma
 To get paygen up and running you need to define the path to your metasploit
 installation in the src/main.py file.
 
+05/08/2013
+* Added update script - pg-update.py
+
 01/03/2013
 * Added randomised key generation to xor module
 * bug fixes
