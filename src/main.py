@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #
-# paygen config file
+# paygen main functions
+#
 
 import os, socket, subprocess, re, random, string
 from time import sleep
@@ -9,7 +10,8 @@ from sys import exit, platform
 # details
 class details:
 	authors = "Matt Jones & Jeff Markwart"
-	version = "3.0.4"
+	version = "3.0.5"
+	codename = "Codename: Cyberdelia"
 
 # define some colours
 class colours:
@@ -37,59 +39,6 @@ def PrintError(message):
 def PrintFailed(message):
 	print "[-] %s" % message
 
-#
-# testing os notifications for os x / linux - Matt 25/02/2013
-#				
-def Notify(message, type):
-	
-	def defaultNotification(type):
-		if type == "1":			
-			print colours.bold + colours.red + "\n[!] %s" % message + colours.reset
-		if type == "2":
-			print colours.bold + colours.green + "\n[+] %s" % message + colours.reset
-	
-	with open('config/paygen_config') as config:
-		for line in config:
-			notifymatch = re.match("NOTIFICATIONS=", line)
-			if notifymatch:
-				notify = re.sub("\"", "", line)
-				notify = re.sub("NOTIFICATIONS=", "", notify).rstrip()
-	
-	if notify == '1':
-		if platform == 'darwin':
-			try:
-				from gntp.notifier import mini as growlnotify
-				growl = True
-				if type == "1":
-					if growl:
-						growlnotify(message, title="PayGen")
-				if type == "2":
-					if growl:
-						growlnotify(message, title="PayGen")
-			except ImportError:
-				defaultNotification(type)
-		elif platform == 'linux2':
-			try:
-				import pynotify1
-				import pygtk
-				pygtk.require('2.0')
-				if not pynotify.init("PayGen"):
-					pass
-				
-				n = pynotify.Notification(message)
-		
-				if not n.show():
-					pass
-			except:
-				defaultNotification(type)
-		else:
-			defaultNotification(type)
-	else:
-		defaultNotification(type)
-#
-# End
-#
-		
 def msfpath():
 	with open('config/paygen_config') as config:
 		for line in config:

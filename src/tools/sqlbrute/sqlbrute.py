@@ -19,8 +19,11 @@ def mssql_brute(host,port,username,wordlist):
 				try:
 					connect = _mssql.connect(host+ ":" + str(port),username,password)
 					if connect:
-						#print "\n[+] SUCCESS: %s / %s" % (username,password)
 						PrintInfo("SUCCESS: %s / %s" % (username,password))
+						#cursor = connect.cursor()
+						#cursor.execute("SELECT version()")
+						#result = cursor.fetchone()
+						#PrintInfo("Version info: %s" % result[0])
 						break
 				except:
 					PrintFailed("FAILED: %s / %s" % (username, password))
@@ -42,6 +45,10 @@ def mysql_brute(host,username,wordlist):
 					connect = MySQLdb.connect(host=host, user=username, passwd=password)
 					if connect:
 						PrintInfo("SUCCESS: %s / %s" % (username,password))
+						cursor = connect.cursor()
+						cursor.execute("SELECT version()")
+						result = cursor.fetchone()
+						PrintInfo("Version info: %s" % result[0])
 						break
 				except:
 					PrintFailed("FAILED: %s / %s" % (username, password))

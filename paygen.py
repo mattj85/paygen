@@ -48,7 +48,7 @@ else:
                     import src.platforms.win_payload_choice
 
             # php
-            elif selection == '2':
+            elif selection == '3':
                 try:
                     reload(src.platforms.php)
                 except:
@@ -56,7 +56,7 @@ else:
 
             # exploit section
             # ms08_067
-            elif selection == '3':
+            elif selection == '4':
                 try:
                     reload(src.exploits.ms08067.ms08067)
                 except:
@@ -64,27 +64,20 @@ else:
 
             # exploit section
             # samba trans2open
-            elif selection == '4':
+            elif selection == '5':
                 try:
                     reload(src.exploits.samba.samba)
                 except:
                     import src.exploits.samba.samba
 
             # check ms12_020 vuln
-            elif selection == '5':
+            elif selection == '6':
                 try:
                     reload(src.exploits.ms12020.ms12020)
                 except:
                     import src.exploits.ms12020.ms12020
 
             # post exploitation
-            # launch keimpx
-            elif selection == '6':
-                try:
-                    reload(src.tools.keimpx.getinfo)
-                except:
-                    import src.tools.keimpx.getinfo
-
             # launch sql brute
             elif selection == '7':
                 try:

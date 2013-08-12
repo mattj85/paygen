@@ -7,6 +7,7 @@
 
 import os
 import subprocess
+import signal
 from src import menus
 from src.main import *
 from time import sleep
@@ -132,14 +133,13 @@ while 1:
 		selection = 0
 		while selection != range(1,2):
 			clear()
-			print "%s%sStart MSF listerner%s\n\nSelect listener type:\n\n[1] reverse\n[2] bind\n\n[*] Hit ^c to go back\n" % (colours.bold, colours.green, colours.reset)
+			print "%s%sStart MSF listerner%s\n\nSelect listener type:\n\n[1] reverse\n[2] bind\n\n[00] Go Back\n" % (colours.bold, colours.green, colours.reset)
 			selection = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
 			if selection == '1':
 				reverse_listener()
 			elif selection == '2':
 				bind_listener()
-				
-			# return to main
-			break
+			elif selection == '00':
+				signal.CTRL_C_EVENT
 	except KeyboardInterrupt:
 		break

@@ -1,21 +1,22 @@
 #!/usr/bin/python
 #
 # paygen menus
+
 from src import main
 import random
 
 def pl_menu():
 	print main.colours.bold + main.colours.green + """Payloads:""" + main.colours.reset + """
 [1] windows
-[2] php
+[2] Linux / OSX (Coming Soon)
+[3] php
 
 """ + main.colours.bold + main.colours.green + """Common Exploits:""" + main.colours.reset + """
-[3] exploit ms08_067 vulnerability
-[4] exploit samba trans2open (linux)
-[5] exploit ms12_020 vulnerability (RDP DoS)
+[4] exploit ms08_067 vulnerability
+[5] exploit samba trans2open (linux)
+[6] exploit ms12_020 vulnerability (RDP DoS)
 
 """ + main.colours.bold + main.colours.green + """Post exploitation:""" + main.colours.reset + """
-[6] launch keimpx
 [7] launch sql brute
 
 """ + main.colours.bold + main.colours.green + """Other options:""" + main.colours.reset + """
@@ -171,7 +172,7 @@ def powershell_menu():
 Choose payload:
 	
 [1] windows/meterpreter/reverse_tcp (default)
-[2] windows/64/meterpreter/reverse_tcp
+[2] windows/x64/meterpreter/reverse_tcp
 [3] windows/meterpreter/reverse_http
 [4] windows/meterpreter/reverse_https
 [5] windows/vncinject/reverse_tcp
@@ -283,16 +284,16 @@ def show_banner():
 | |_) / _` | | | | |  _ / _ \ '_ \ 
 |  __/ (_| | |_| | |_| |  __/ | | |
 |_|   \__,_|\__, |\____|\___|_| |_|
-            |___/ Yippee-ki-yay Edition
-""" % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset)
+            |___/ %s
+""" % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset, main.details.codename)
 
 	if banner == 2:
 		print """%s%sv%s - %s%s  
   _____  _______ __   __  ______ _______ __   _
  |_____] |_____|   \_/   |  ____ |______ | \  |
  |       |     |    |    |_____| |______ |  \_|
-                          Yippee-ki-yay Edition
-""" % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset)
+                           %s
+""" % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset, main.details.codename)
 
 	if banner == 3:
 		print """%s%sv%s - %s%s
@@ -300,8 +301,8 @@ def show_banner():
 ||P |||a |||y |||G |||e |||n ||
 ||__|||__|||__|||__|||__|||__||
 |/__\|/__\|/__\|/__\|/__\|/__\|
-          Yippee-ki-yay Edition
-""" % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset)
+           %s
+""" % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset, main.details.codename)
 
 	if banner == 4:
 		print """%s%sv%s - %s%s
@@ -310,8 +311,8 @@ def show_banner():
  / /_)/ _` | | | |/ /_\/ _ \ '_ \ 
 / ___/ (_| | |_| / /_\  __/ | | |
 \/    \__,_|\__, \____/\___|_| |_|
-            |___/Yippee-ki-yay Edition
-""" % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset)
+            |___/%s
+""" % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset, main.details.codename)
 
 	if banner == 5:
 		print """%s%sv%s - %s%s
@@ -319,5 +320,5 @@ def show_banner():
 (  _ \ /__\ ( \/ )/ __)( ___)( \( )
  )___//(__)\ \  /( (_-. )__)  )  ( 
 (__) (__)(__)(__) \___/(____)(_)\_)
-              Yippee-ki-yay Edition
-""" % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset)
+               %s
+""" % (main.colours.bold, main.colours.red, main.details.version, main.details.authors, main.colours.reset, main.details.codename)

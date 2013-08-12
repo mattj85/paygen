@@ -4,6 +4,11 @@ Contacts - Matt Jones (matt.jones.85@gmail.com) - Jeff Markwart (ablackhippy@gma
 To get paygen up and running you need to define the path to your metasploit
 installation in the src/main.py file.
 
+12/08/2013
+* Removed keimpx to replace with custom scripts
+* Removed pop-up notification system
+* Bug fixes & Menu tweaks
+
 05/08/2013
 * Added update script - pg-update.py
 
