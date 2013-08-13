@@ -20,10 +20,10 @@ def mssql_brute(host,port,username,wordlist):
 					connect = pymssql.connect(host=host+ ":" + str(port), user=username, password=password)
 					if connect:
 						PrintInfo("SUCCESS: %s / %s" % (username,password))
-						cursor = connect.cursor()
-						cursor.execute("SELECT version()")
-						result = cursor.fetchone()
-						PrintInfo("Version info: %s" % result[0])
+						#~ cursor = connect.cursor()
+						#~ cursor.execute("SELECT version()")
+						#~ result = cursor.fetchone()
+						#~ PrintInfo("Version info: %s" % result[0])
 						break
 				except:
 					PrintFailed("FAILED: %s / %s" % (username, password))
@@ -76,7 +76,7 @@ while 1:
 		while selection != range(1,2):
 			clear()
 			sql_selection()
-			selection = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
+			selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 			if selection == "1":
 				dbtype = selection
 				break
@@ -84,10 +84,10 @@ while 1:
 				dbtype = selection
 				break
 		
-		host = raw_input("\nEnter host ip: ")
-		port = raw_input("Enter port: ")
-		user = raw_input("Enter username: ")
-		wordlist = raw_input("Enter path to wordlist (Enter for default): ")
+		host = raw_input("\n Enter host ip: ")
+		port = raw_input(" Enter port (Enter for default): ")
+		user = raw_input(" Enter username (Enter for default): ")
+		wordlist = raw_input(" Enter path to wordlist (Enter for default): ")
 		
 		# set defaults for empty variables
 		if not port:

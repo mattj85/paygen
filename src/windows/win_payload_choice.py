@@ -11,7 +11,7 @@ while 1:
 		while pltype != range(1,5):
 			main.clear()
 			menus.win_menu()
-			pltype = raw_input("%sSelection > %s" % (main.colours.bold, main.colours.reset))
+			pltype = raw_input(" %sSelection > %s" % (main.colours.bold, main.colours.reset))
 
 			# windows
 			if pltype == '1':
@@ -22,9 +22,9 @@ while 1:
 
 			elif pltype == '2':
 				try: 
-					reload(src.windows.asp)
+					reload(src.asp.asp)
 				except: 
-					import src.windows.asp
+					import src.asp.asp
 		
 			elif pltype == '3':
 				try: 

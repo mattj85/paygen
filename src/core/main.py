@@ -3,7 +3,8 @@
 # paygen main functions
 #
 
-import os, socket, subprocess, re, random, string
+import subprocess as subp
+import os, socket, re, random, string
 from time import sleep
 from sys import exit, platform
 
@@ -11,13 +12,14 @@ from sys import exit, platform
 class details:
 	authors = "Matt Jones & Jeff Markwart"
 	version = "3.1.0"
-	codename = "Codename: Cyberdelia"
+	codename = "Cyberdelia"
 
 # define some colours
 class colours:
 	bold = '\033[1m'
 	red = '\033[31m'
 	green = '\033[32m'
+	cyan = '\033[36m'
 	reset = '\033[0;0m'
 
 # paygen currently only for *nix systems
@@ -25,19 +27,19 @@ def system_type():
 	return os.name
 	
 def clear():
-	subprocess.call(["clear"])
+	subp.call(["clear"])
 	
 def EntContinue():
-	raw_input("\nPress %sENTER%s to continue" % (colours.bold, colours.reset))
+	raw_input("\n Press %sENTER%s to continue" % (colours.bold, colours.reset))
 	
 def PrintInfo(message):
-	print colours.bold + colours.green + "\n[+] %s" % message + colours.reset
+	print colours.bold + colours.green + "\n [+] %s" % message + colours.reset
 	
 def PrintError(message):
-	print colours.bold + colours.red + "\n[!] %s" % message + colours.reset
+	print colours.bold + colours.red + "\n [!] %s" % message + colours.reset
 	
 def PrintFailed(message):
-	print "[-] %s" % message
+	print " [-] %s" % message
 
 def msfpath():
 	with open('config/paygen_config') as config:
@@ -61,7 +63,7 @@ def install_msf():
 				install_git = raw_input(PrintInfo("Git not installed. Install now? (Y/N): "))
 				if install_git == 'Y' or install_git == 'y':
 					PrintInfo("Installing git\n")
-					subprocess.Popen("sudo apt-get install git", shell=True).wait()
+					subp.Popen("sudo apt-get install git", shell=True).wait()
 				else:
 					PGExit()
 			else:
@@ -70,12 +72,19 @@ def install_msf():
 		# pull metasploit
 		PrintInfo("Grabbing Metasploit")
 		tools_path = os.getenv('HOME')+"/tools"
-		subprocess.Popen("git clone https://github.com/rapid7/metasploit-framework.git %s/msf" % tools_path, shell=True).wait()
+		subp.Popen("git clone https://github.com/rapid7/metasploit-framework.git %s/msf" % tools_path, shell=True).wait()
 
 	else:
 		PrintError("Auto MSF install is not supported on this platform")
 		PGExit()
 
+# update metasploit
+def update_msf():
+	proc = subp.Popen('ruby %s/msfupdate' % msfpath(), shell=True, stdout=subp.PIPE)
+	output = proc.stdout.readlines()
+	for line in output:
+		print " [+] %s" % line.rstrip()
+		
 # grab ip of adapter. 
 def iface_ip():	
 	if platform != 'darwin':
@@ -84,10 +93,10 @@ def iface_ip():
 		iface.settimeout(2)
 		iface = iface.getsockname()[0]
 	else:
-		iface = raw_input("\n[+] Enter IP: ")
+		iface = raw_input(" \n[+] Enter IP: ")
 		while is_valid_ipv4(iface) == False:
 			PrintError("Invalid IP!")
-			iface = raw_input("\n[+] Enter IP: ")
+			iface = raw_input(" \n[+] Enter IP: ")
 			if is_valid_ipv4(iface) == True:
 				break
 		
@@ -102,14 +111,10 @@ def default_lport():
 				lport = re.sub("DEFAULT_LPORT=", lport)
 				return lport.rstrip()
 
-# update metasploit
-def update_msf():
-	subprocess.Popen('ruby %s/msfupdate' % msfpath(), shell=True).wait()
-	
 # standard paygen exit
 def PGExit():
 	PrintInfo("Exiting Paygen\n")
-	exit(1)
+	exit()
 	
 def default_wordlist():
 	wordlist = os.getcwd() + "/src/wordlist/wordlist.txt"

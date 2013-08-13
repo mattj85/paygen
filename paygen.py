@@ -37,7 +37,7 @@ else:
         try:
             # display menu and grab user selections
             menus.pl_menu()
-            selection = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
+            selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 
             # payloads section
             # windows
@@ -58,41 +58,22 @@ else:
             # launch sql brute
             elif selection == '4':
                 try:
-                    reload(src.tools.sqlbrute.sqlbrute)
+                    reload(src.modules.sqlbrute)
                 except:
-                    import src.tools.sqlbrute.sqlbrute
+                    import src.modules.sqlbrute
 
             # other options
             # launch msf listener
             elif selection == 'l' or selection == 'L':
                 try:
-                    reload(src.listener)
+                    reload(src.misc.listener)
                 except:
-                    import src.listener
-
-            # basic portscan
-            elif selection == 'p' or selection == 'P':
-                try:
-                    reload(src.portscan)
-                except:
-                    import src.portscan
-
-            # nmap scanner
-            elif selection == 'n' or selection == 'N':
-                try:
-                    reload(src.nmap)
-                except:
-                    import src.nmap
+                    import src.misc.listener
 
             # update msf
             elif selection == 'u' or selection == 'U':
                 PrintInfo("Updating metasploit. Please wait.")
                 update_msf()
-                try:
-                    libnotify(title="Finished",message="MSF update complete")
-                except:
-                    pass
-
                 EntContinue()
 
             # exit paygen
