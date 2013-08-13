@@ -6,18 +6,13 @@ from src.core import main
 import random
 
 def pl_menu():
-	print main.colours.bold + main.colours.green + """Payloads:""" + main.colours.reset + """
+	print main.colours.bold + main.colours.green + """Metasploit Payloads:""" + main.colours.reset + """
 [1] windows
 [2] Linux / OSX (Coming Soon)
 [3] php
 
-""" + main.colours.bold + main.colours.green + """Common Exploits:""" + main.colours.reset + """
-[4] exploit ms08_067 vulnerability
-[5] exploit samba trans2open (linux)
-[6] exploit ms12_020 vulnerability (RDP DoS)
-
-""" + main.colours.bold + main.colours.green + """Post exploitation:""" + main.colours.reset + """
-[7] launch sql brute
+""" + main.colours.bold + main.colours.green + """Modules:""" + main.colours.reset + """
+[4] sqlbrute
 
 """ + main.colours.bold + main.colours.green + """Other options:""" + main.colours.reset + """
 [l] start MSF listener

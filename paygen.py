@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Advanced payload generator for metasploit framework
+# Advanced payload generator
 #
 # Matt Jones & Jeff Markwart
 
@@ -54,32 +54,9 @@ else:
                 except:
                     import src.php.php
 
-            # exploit section
-            # ms08_067
-            elif selection == '4':
-                try:
-                    reload(src.exploits.ms08067.ms08067)
-                except:
-                    import src.exploits.ms08067.ms08067
-
-            # exploit section
-            # samba trans2open
-            elif selection == '5':
-                try:
-                    reload(src.exploits.samba.samba)
-                except:
-                    import src.exploits.samba.samba
-
-            # check ms12_020 vuln
-            elif selection == '6':
-                try:
-                    reload(src.exploits.ms12020.ms12020)
-                except:
-                    import src.exploits.ms12020.ms12020
-
             # post exploitation
             # launch sql brute
-            elif selection == '7':
+            elif selection == '4':
                 try:
                     reload(src.tools.sqlbrute.sqlbrute)
                 except:

