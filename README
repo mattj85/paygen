@@ -6,6 +6,7 @@ installation in the src/main.py file.
 
 13/08/2013
 * Tweaks to php payload generation
+* Re-structured files / folders
 
 12/08/2013
 * Removed keimpx to replace with custom scripts
