@@ -124,7 +124,7 @@ else:
 
             else:
                 PrintError("Please make a selection")
-                sleep(3)
+                sleep(2)
                 #PGExit()
 
         except KeyboardInterrupt:

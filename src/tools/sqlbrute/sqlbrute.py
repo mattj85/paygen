@@ -17,13 +17,13 @@ def mssql_brute(host,port,username,wordlist):
 				count += 1
 				password = password.rstrip()
 				try:
-					connect = _mssql.connect(host+ ":" + str(port),username,password)
+					connect = pymssql.connect(host=host+ ":" + str(port), user=username, password=password)
 					if connect:
 						PrintInfo("SUCCESS: %s / %s" % (username,password))
-						#cursor = connect.cursor()
-						#cursor.execute("SELECT version()")
-						#result = cursor.fetchone()
-						#PrintInfo("Version info: %s" % result[0])
+						cursor = connect.cursor()
+						cursor.execute("SELECT version()")
+						result = cursor.fetchone()
+						PrintInfo("Version info: %s" % result[0])
 						break
 				except:
 					PrintFailed("FAILED: %s / %s" % (username, password))
@@ -64,7 +64,7 @@ while 1:
 		
 		try:
 			import MySQLdb
-			import _mssql
+			import pymssql
 		except ImportError:
 			print "Make sure MySQLdb and pymssql libraries are installed.\n(sudo apt-get install python-MySQLdb python-pymssql)"
 			

