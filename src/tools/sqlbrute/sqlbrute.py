@@ -5,8 +5,8 @@
 # Matt Jones - 04/07/2012
  
 import time
-from src.main import *
-from src.menus import *
+from src.core.main import *
+from src.core.menus import *
  
 def mssql_brute(host,port,username,wordlist):
 	try:
