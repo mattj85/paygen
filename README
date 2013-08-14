@@ -1,13 +1,24 @@
-Metaplsoit Payload generator... For all the lazy people out there ;)
-Contacts - Matt Jones (matt.jones.85@gmail.com) - Jeff Markwart (ablackhippy@gmail.com)
+Payload Generator (PayGen) - Advanced payload generatoion automation tool.
 
-To get paygen up and running you need to define the path to your metasploit
-installation in the src/main.py file.
+Author: Matt Jones (matt.jones.85[at]gmail.com)
+Contributors: Jeff Markwart
+
+Required modules:
+python-pymssql
+pyton-mysqldb
+mingw32
+
+To get PayGen up and running you need to define the path to your metasploit
+installation in the config/paygen_config file.
 
 ++ COMING SOON ++
 
 * Teensy Payloads
 * MSSQL xp_cmdshell interaction
+* java payloads
+* linux / osx payloads
+
+CHANGELOG
 
 13/08/2013 - Version 3.1.0
 
