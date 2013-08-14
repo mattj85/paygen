@@ -3,8 +3,8 @@ Payload Generator
 Author: Matt Jones (matt.jones.85[at]gmail.com)
 Contributors: Jeff Markwart
 
-Written in python,PayGen is a menu driven tool that can be used to create payloads 
-for Metasploit and other platforms.
+Written in python, PayGen is a menu driven tool that enables you to quickly and 
+effortlessly create payloads for multiple platforms.
 
 Required modules:
 python-pymssql
