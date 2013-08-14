@@ -21,7 +21,7 @@ while 1:
 		while selection != range(1,4):
 			clear()
 			menus.shellcode_menu()
-			selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
+			selection = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
 			if selection == '1':
 				payload = "windows/meterpreter/reverse_tcp"
 				break
@@ -31,18 +31,18 @@ while 1:
 
 		# shall we encode the payload?
 		menus.win_enc_menu()
-		encoding = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
+		encoding = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
 	
 		#			
 		# get some user info
-		ip = raw_input("\n Enter your local or remote ip (%s): " % iface)
+		ip = raw_input("\nEnter your local or remote ip (%s): " % iface)
 		if ip == '':
 			ip = iface
-		port = raw_input(" Enter a port (default 8080): ")
+		port = raw_input("Enter a port (default 8080): ")
 		if port == '':
 			port = 8080
 		if encoding == '1' or encoding == '':
-			iterations = raw_input(" Number of times to encode shellcode (default 5): ")
+			iterations = raw_input("Number of times to encode shellcode (default 5): ")
 			if iterations == '':
 				iterations = 5		
 

@@ -47,6 +47,13 @@ else:
                 except:
                     import src.windows.win_payload_choice
 
+			# *nix
+            elif selection == '2':
+                try:
+                    reload(src.linux.linux_msf)
+                except:
+                    import src.linux.linux_msf
+
             # php
             elif selection == '3':
                 try:
