@@ -59,9 +59,23 @@ else:
                 except:
                     import src.web.web_payload_menu
 
+			# java
+			#~ elif selection == '4':
+				#~ try:
+					#~ reload(src.java.java)
+				#~ except:
+					#~ import src.java.java
+
+			# teensy
+			#~ elif selection == '5':
+                #~ try:
+                    #~ reload(src.teensy.teensy)
+                #~ except:
+                    #~ import src.teensy.teensy
+
             # post exploitation
             # launch sql brute
-            elif selection == '4':
+            elif selection == '6':
                 try:
                     reload(src.modules.sql.sqlbrute)
                 except:

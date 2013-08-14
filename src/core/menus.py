@@ -10,9 +10,11 @@ def pl_menu():
  [1] windows
  [2] linux / osx (Coming Soon)
  [3] web
+ [4] java
+ [5] teensy
 
 """ + main.colours.bold + main.colours.green + """ Modules:""" + main.colours.reset + """
- [4] sqlbrute
+ [6] sqlbrute
 
 """ + main.colours.bold + main.colours.green + """ Other options:""" + main.colours.reset + """
  [l] start MSF listener
