@@ -12,7 +12,7 @@ installation in the src/main.py file.
 	  than metasploit integration
 	* Removed "common exploits"
 	
-	.COMING SOON.
+	-COMING SOON-
 
 	* Teensy Payloads
 	* MSSQL xp_cmdshell interaction
