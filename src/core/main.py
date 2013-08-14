@@ -1,7 +1,6 @@
 #!/usr/bin/python
 #
 # paygen main functions
-#
 
 import subprocess as subp
 import os, socket, re, random, string
@@ -11,7 +10,7 @@ from sys import exit, platform
 # details
 class details:
 	authors = "Matt Jones & Jeff Markwart"
-	version = "3.1.0"
+	version = "3.1.1"
 	codename = "Cyberdelia"
 
 # define some colours
@@ -35,8 +34,14 @@ def EntContinue():
 def PrintInfo(message):
 	print colours.bold + colours.green + "\n [+] %s" % message + colours.reset
 	
+def PrintInfo2(info, message):
+	print colours.bold + colours.green + " [+] %s: " % info + colours.cyan + "%s" % message + colours.reset
+	
 def PrintError(message):
 	print colours.bold + colours.red + "\n [!] %s" % message + colours.reset
+
+def PrintError2(info, message):
+	print colours.bold + colours.red + " [!] %s: " % info + colours.cyan + "%s" % message + colours.reset
 	
 def PrintFailed(message):
 	print " [-] %s" % message

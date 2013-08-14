@@ -1,8 +1,6 @@
 #!/usr/bin/python
 #
 # Advanced payload generator
-#
-# Matt Jones & Jeff Markwart
 
 import os
 from src.core import menus
@@ -43,9 +41,9 @@ else:
             # windows
             if selection == '1':
                 try:
-                    reload(src.windows.win_payload_choice)
+                    reload(src.windows.win_payload_menu)
                 except:
-                    import src.windows.win_payload_choice
+                    import src.windows.win_payload_menu
 
 			# *nix
             elif selection == '2':
@@ -57,17 +55,17 @@ else:
             # php
             elif selection == '3':
                 try:
-                    reload(src.php.php)
+                    reload(src.web.web_payload_menu)
                 except:
-                    import src.php.php
+                    import src.web.web_payload_menu
 
             # post exploitation
             # launch sql brute
             elif selection == '4':
                 try:
-                    reload(src.modules.sqlbrute)
+                    reload(src.modules.sql.sqlbrute)
                 except:
-                    import src.modules.sqlbrute
+                    import src.modules.sql.sqlbrute
 
             # other options
             # launch msf listener

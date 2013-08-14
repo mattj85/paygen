@@ -9,7 +9,7 @@ def pl_menu():
 	print main.colours.bold + main.colours.green + """ Metasploit Payloads:""" + main.colours.reset + """
  [1] windows
  [2] linux / osx (Coming Soon)
- [3] php
+ [3] web
 
 """ + main.colours.bold + main.colours.green + """ Modules:""" + main.colours.reset + """
  [4] sqlbrute
@@ -22,7 +22,7 @@ def pl_menu():
 """
 
 def win_menu():
-	print main.colours.bold + main.colours.green + """ Windows MSF payload generator""" + main.colours.reset + """
+	print main.colours.bold + main.colours.green + """ MSF Windows Payloads""" + main.colours.reset + """
 	
  Please make a selection:
 	
@@ -33,14 +33,15 @@ def win_menu():
  [5] backdoored executable
  [6] pdf embeded payload
 
-""" +main.colours.bold + main.colours.green + """ Powershell:""" + main.colours.reset + """
+""" +main.colours.bold + main.colours.green + """ Powershell Based""" + main.colours.reset + """
+ 
  [7] powershell payload (best)
 
  [*] Hit ^C to go back
 """
 
 def win_menu1():
-	print """ Windows MSF """ + main.colours.bold + main.colours.red + """staged""" + main.colours.reset + """ payload generator
+	print """ Windows """ + main.colours.bold + main.colours.red + """staged""" + main.colours.reset + """ payload generator
 	
  Please select a payload:
 
@@ -65,7 +66,7 @@ def win_enc_menu():
 
 # linux payloads currently disabled
 def lin_menu():
-	print main.colours.bold + main.colours.green + """ Linux MSF payload generator""" + main.colours.reset + """
+	print main.colours.bold + main.colours.green + """ MSF Linux Payloads""" + main.colours.reset + """
 	
  Please select a payload:
 	
@@ -77,8 +78,19 @@ def lin_menu():
  [*] Hit ^C to go back
 """
 
+def web_menu():
+	print main.colours.bold + main.colours.green + """ MSF Web Payloads""" + main.colours.reset + """
+	
+ Please make a selection:
+	
+ [1] php embeded payload
+ [2] asp embeded payload
+
+ [*] Hit ^C to go back
+"""
+
 def php_menu():
-	print main.colours.bold + main.colours.green + """ PHP MSF payload generator""" + main.colours.reset + """
+	print main.colours.bold + main.colours.green + """ MSF PHP Payloads""" + main.colours.reset + """
 	
  Please select a payload:
 	
@@ -148,7 +160,7 @@ def pdf_title():
 """
 
 def pdf_menu():
-	print main.colours.bold + main.colours.green + """\nPlease pick your payload to use""" + main.colours.reset + """
+	print main.colours.bold + main.colours.green + """\n Please pick your payload to use""" + main.colours.reset + """
 
  Choose payload:
 

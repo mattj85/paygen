@@ -17,7 +17,7 @@ def reverse_listener():
 	while selection != range(1,8):
 		clear()
 		menus.listener_menu()
-		selection = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
+		selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 		if selection == '1':
 			payload = "windows/x64/meterpreter/reverse_tcp"
 			break
@@ -43,7 +43,7 @@ def reverse_listener():
 			payload = "windows/vncinject/reverse_tcp"
 			break
 
-	port = raw_input("\nEnter listener port: ")
+	port = raw_input("\n Enter listener port: ")
 
 	PrintInfo("Starting multi handler")
 
@@ -78,7 +78,7 @@ def bind_listener():
 		clear()
 		menus.bind_title()
 		menus.bind_menu()
-		selection = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
+		selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 		if selection == '1':
 			payload = "windows/meterpreter/bind_tcp"
 			break
@@ -102,8 +102,8 @@ def bind_listener():
 			break
 
 	# get some info
-	target = raw_input("\nEnter target IP: ")
-	port = raw_input("Enter port for reverse connection: ")
+	target = raw_input("\n Enter target IP: ")
+	port = raw_input(" Enter port for reverse connection: ")
 	sleep(1)
 
 	# create rc file
@@ -133,13 +133,12 @@ while 1:
 		selection = 0
 		while selection != range(1,2):
 			clear()
-			print "%s%sStart MSF listerner%s\n\nSelect listener type:\n\n[1] reverse\n[2] bind\n\n[00] Go Back\n" % (colours.bold, colours.green, colours.reset)
-			selection = raw_input("%sSelection > %s" % (colours.bold, colours.reset))
+			print "%s%s Start MSF listerner%s\n\n Select listener type:\n\n [1] reverse\n [2] bind\n\n [*] Hit ^C to go back\n" % (colours.bold, colours.green, colours.reset)
+			selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 			if selection == '1':
 				reverse_listener()
 			elif selection == '2':
 				bind_listener()
-			elif selection == '00':
-				signal.CTRL_C_EVENT
+
 	except KeyboardInterrupt:
 		break

@@ -1,28 +1,22 @@
-...Payload Generator (PayGen)...
-
-Author: Matt Jones (matt.jones.85[at]gmail.com)
-Contributors: Jeff Markwart
+Metaplsoit Payload generator... For all the lazy people out there ;)
+Contacts - Matt Jones (matt.jones.85@gmail.com) - Jeff Markwart (ablackhippy@gmail.com)
 
 To get paygen up and running you need to define the path to your metasploit
-installation in the config/paygen_config file.
-
-Required modules:
-- python-pymssql
-- python-MySQLdb
-- mingw32
-
--COMING SOON-
-
-* Teensy Payloads
-* MSSQL xp_cmdshell interaction
+installation in the src/main.py file.
 
 13/08/2013
+
 ++ Version 3.1.0 ++
-* Re-structured files / folders
-* Removed all msf listeners from each module. Focusing more on payload generation
-  than metasploit integration
-* Removed "common exploits"
+	* Re-structured files / folders
+	* Removed all msf listeners from each module. Focusing more on payload generation
+	  than metasploit integration
+	* Removed "common exploits"
 	
+	.COMING SOON.
+
+	* Teensy Payloads
+	* MSSQL xp_cmdshell interaction
+
 12/08/2013
 * Removed keimpx to replace with custom scripts
 * Removed pop-up notification system
