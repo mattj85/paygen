@@ -65,6 +65,12 @@ else:
                 except:
                     import src.java.java
 
+            elif selection == '5':
+                try:
+					reload(src.teensy.teensy)
+                except:
+                    import src.teensy.teensy
+
             # post exploitation
             # launch sql brute
             elif selection == '6':
