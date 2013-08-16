@@ -92,7 +92,7 @@ def update_msf():
 		
 # grab ip of adapter. 
 def iface_ip():	
-	if platform != 'darwin':
+	if platform == 'linux2':
 		iface = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		iface.connect(('google.com', 0))
 		iface.settimeout(2)
