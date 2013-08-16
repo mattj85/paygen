@@ -105,7 +105,7 @@ def iface_ip():
 			if is_valid_ipv4(iface) == True:
 				break
 		
-		return iface
+	return iface
 				
 def default_lport():
 	with open("config/paygen_config") as config:
