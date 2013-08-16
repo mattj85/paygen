@@ -59,11 +59,11 @@ else:
                 except:
                     import src.web.web_payload_menu
 
-			elif selection == '4':
-				try:
+            elif selection == '4':
+                try:
 					reload(src.java.java)
-				except:
-					import src.java.java
+                except:
+                    import src.java.java
 
             # post exploitation
             # launch sql brute
