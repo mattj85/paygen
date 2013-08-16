@@ -24,7 +24,7 @@ while 1:
 		arch = 0
 		while arch != range(1,2):
 			clear()
-			arch_menu()
+			menus.arch_menu()
 			selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 			if selection == '1':
 				arch = "32"
