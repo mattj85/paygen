@@ -94,11 +94,11 @@ while 1:
 			
 		# get some details
 		#if selection == range(1,3) or selection == '':
-		ipaddr = raw_input(" \nEnter IP address (default %s): " % iface )
-		if ipaddr == '':
+		ipaddr = raw_input("\n Enter IP address (default %s): " % iface )
+		if not ipaddr:
 			ipaddr = iface
 		port = raw_input(" Enter port (default 8080): ")
-		if port == '':
+		if not port:
 			port = '8080'
 			
 		# create payload bat file in /tmp
