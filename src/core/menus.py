@@ -8,7 +8,7 @@ import random
 def pl_menu():
 	print main.colours.bold + main.colours.green + """ Metasploit Payloads:""" + main.colours.reset + """
  [1] windows
- [2] linux / osx (Coming Soon)
+ [2] linux / osx
  [3] web
  [4] java
  [5] teensy
@@ -64,6 +64,14 @@ def win_enc_menu():
 	
  [1] multi-encoding (default)
  [2] no-encoding
+"""
+
+def arch_menu():
+	print """
+ Choose architecture:
+	
+ [1] 32bit (default)
+ [2] 64bit
 """
 
 # linux payloads currently disabled
@@ -124,11 +132,29 @@ def asp_menu():
  [*] Hit ^c to go back
 """
 
-def shellcode_menu():
+def shellcode32_menu():
 	print main.colours.bold + main.colours.green + """ Metasploit shellcode generator""" + main.colours.reset + """
 
  [1] windows/meterpreter/reverse_tcp
  [2] windows/shell/reverse_tcp
+
+ [*] Hit ^c to go back
+"""
+
+def shellcode64_menu():
+	print main.colours.bold + main.colours.green + """ Metasploit shellcode generator""" + main.colours.reset + """
+
+ [1] windows/x64/meterpreter/bind_tcp
+ [2] windows/x64/meterpreter/reverse_https
+ [3] windows/x64/meterpreter/reverse_tcp
+ [4] windows/x64/shell/bind_tcp
+ [5] windows/x64/shell/reverse_https
+ [6] windows/x64/shell/reverse_tcp
+ [7] windows/x64/shell_bind_tcp
+ [8] windows/x64/shell_reverse_tcp
+ [9] windows/x64/vncinject/bind_tcp
+ [10] windows/x64/vncinject/reverse_https
+ [11] windows/x64/vncinject/reverse_tcp
 
  [*] Hit ^c to go back
 """

@@ -18,17 +18,38 @@ while 1:
 		# interface ip
 		iface = iface_ip()
 
-		selection = 0
-		while selection != range(1,4):
+		# select architecture
+		# 1 = 32bit
+		# 2 = 64bit
+		arch = 0
+		while arch != range(1,2):
 			clear()
-			menus.shellcode_menu()
+			arch_menu()
 			selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 			if selection == '1':
-				payload = "windows/meterpreter/reverse_tcp"
+				arch = "32"
 				break
-			if selection == '2':
-				payload = "windows/shell/reverse_tcp"
+			elif selection == '2':
+				arch = "64"
 				break
+		
+		# select 32bit payload
+		if arch == '1':
+			selection = 0
+			while selection != range(1,2):
+				clear()
+				menus.shellcode32_menu()
+				selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
+				if selection == '1':
+					payload = "windows/meterpreter/reverse_tcp"
+					break
+				if selection == '2':
+					payload = "windows/shell/reverse_tcp"
+					break
+					
+		if arch == '2':
+			PrintInfo("Not yet implemented")
+			break
 
 		# shall we encode the payload?
 		menus.win_enc_menu()

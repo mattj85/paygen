@@ -24,7 +24,7 @@ if not os.path.exists(msfpath()):
         exit(1)
 else:
     while 1:
-        # check for $ create output dir
+        # check for & create output dir
         if not os.path.exists("output/"):
             os.makedirs("output/")
 
