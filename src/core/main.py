@@ -10,7 +10,7 @@ from sys import exit, platform
 # details
 class details:
 	authors = "Matt Jones & Jeff Markwart"
-	version = "3.1.1"
+	version = "3.1.2"
 	codename = "Cyberdelia"
 
 # define some colours
