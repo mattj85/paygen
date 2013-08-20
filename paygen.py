@@ -89,7 +89,7 @@ else:
 
             # update msf
             elif selection == 'u' or selection == 'U':
-                PrintInfo("Updating metasploit. Please wait.")
+                PrintInfo("Updating metasploit. Please wait.\n")
                 update_msf()
                 EntContinue()
 

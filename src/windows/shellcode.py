@@ -37,6 +37,7 @@ while 1:
 		if arch == '1':
 			selection = 0
 			encoder = "x86/shikata_ga_nai"
+			outfile = "shellcode32.txt"
 			while selection != range(1,2):
 				clear()
 				menus.shellcode32_menu()
@@ -51,6 +52,7 @@ while 1:
 		if arch == '2':
 			selection = 0
 			encoder = "x64/xor"
+			outfile = "shellcode64.txt"
 			while selection != range(1,2):
 				clear()
 				menus.shellcode64_menu()
@@ -95,14 +97,14 @@ while 1:
 			sleep(3)
 			
 			# create windows shellcode file
-			winshellcode = "output/shellcode.txt"
+			winshellcode = "output/"+outfile
 			fw = open(winshellcode, "w")
 			fw.write(shellcode)
 			fw.close()
 			sleep(1)
 			
 			# return to main
-			PrintInfo("File shellcode.txt created in output directory")
+			PrintInfo("File %s created in output directory" % outfile)
 			EntContinue()
 			break
 		
@@ -117,14 +119,14 @@ while 1:
 			sleep(3)
 
 			# create windows shellcode file
-			winshellcode = "output/shellcode.txt"
+			winshellcode = "output/"+outfile
 			fw = open(winshellcode, "w")
 			fw.write(shellcode)
 			fw.close()
 			sleep(1)
 
 			# return to main
-			PrintInfo("File shellcode.txt created in output directory")
+			PrintInfo("File %s created in output directory" % outfile)
 			EntContinue()
 			break
 
