@@ -98,7 +98,7 @@ while 1:
 				iterations = 10
 				
 		# create shellcode
-		shellcodeGen(path, encoding, payload, ip, port, iterations, encoder)
+		shellcode = shellcodeGen(path, encoding, payload, ip, port, iterations, encoder)
 
 		key = generate_random_string(randint(1,10), randint(10000,100000))
 		PrintInfo("Starting XOR encryption with %s digit random key" % key[1])
