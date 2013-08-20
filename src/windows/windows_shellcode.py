@@ -27,10 +27,10 @@ while 1:
 			menus.arch_menu()
 			selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 			if selection == '1':
-				arch = "32"
+				arch = "1"
 				break
 			elif selection == '2':
-				arch = "64"
+				arch = "2"
 				break
 		
 		# select 32bit payload
