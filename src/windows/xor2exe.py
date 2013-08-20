@@ -34,7 +34,7 @@ while 1:
 		selection = 0
 		while selection != range(1,4):
 			clear()
-			menus.shellcode_menu()
+			menus.shellcode_menu32()
 			selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
 			if selection == '1':
 				payload = "windows/meterpreter/reverse_tcp"
