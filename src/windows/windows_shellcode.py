@@ -2,7 +2,7 @@
 #
 
 import subprocess as subp
-import os
+import os, sys
 from src.core import menus
 from src.core.main import *
 from time import sleep
@@ -48,8 +48,17 @@ while 1:
 					break
 					
 		if arch == '2':
-			PrintInfo("Not yet implemented")
-			break
+			selection = 0
+			while selection != range(1,2):
+				clear()
+				menus.shellcode64_menu()
+				selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
+				if selection == '1':
+					payload = "windows/x64/meterpreter/reverse_tcp"
+					break
+				if selection == '2':
+					payload = "windows/x64/shell/reverse_tcp"
+					break
 
 		# shall we encode the payload?
 		menus.win_enc_menu()
