@@ -168,4 +168,4 @@ def getPID():
 def generate_random_string(low, high):
     length = random.randint(low, high)
     letters = string.ascii_letters+string.digits
-    return ''.join([random.choice(letters) for _ in range(length)])
+    return ''.join([random.choice(letters) for _ in range(length)]), length
