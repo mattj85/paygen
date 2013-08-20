@@ -113,7 +113,7 @@ while 1:
 								
 			shellcode = proc.communicate()[0]
 
-		key = generate_random_string(randint(1,10), randint(5001,20000))
+		key = generate_random_string(randint(1,10), randint(10000,100000))
 		PrintInfo("Starting XOR encryption with %s digit random key" % key[1])
 		encrypted = xor_string(shellcode, key[0])
 		xor = hexlify(encrypted)
