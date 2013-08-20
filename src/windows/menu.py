@@ -16,9 +16,9 @@ while 1:
 			# windows
 			if pltype == '1':
 				try: 
-					reload(src.windows.windows)
+					reload(src.windows.win_std)
 				except: 
-					import src.windows.windows
+					import src.windows.win_std
 
 			elif pltype == '2':
 				try: 
@@ -28,15 +28,15 @@ while 1:
 		
 			elif pltype == '3':
 				try: 
-					reload(src.windows.windows_shellcode)
+					reload(src.windows.shellcode)
 				except: 
-					import src.windows.windows_shellcode
+					import src.windows.shellcode
 		
 			elif pltype == '4':
 				try: 
-					reload(src.windows.windows_shelltoxor)
+					reload(src.windows.xor2exe)
 				except: 
-					import src.windows.windows_shelltoxor
+					import src.windows.xor2exe
 
 			elif pltype == '5':
 				try: 
@@ -53,9 +53,9 @@ while 1:
 			# powershell based payloads
 			elif pltype == '7':
 				try: 
-					reload(src.powershell.powershell)
+					reload(src.ps.powershell)
 				except: 
-					import src.powershell.powershell
+					import src.ps.powershell
 
 			# return to main
 			break

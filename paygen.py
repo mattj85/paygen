@@ -41,9 +41,9 @@ else:
             # windows
             if selection == '1':
                 try:
-                    reload(src.windows.win_payload_menu)
+                    reload(src.windows.menu)
                 except:
-                    import src.windows.win_payload_menu
+                    import src.windows.menu
 
 			# *nix
             elif selection == '2':
