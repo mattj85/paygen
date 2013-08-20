@@ -131,7 +131,7 @@ while 1:
 		
 		# compile payload
 		PrintInfo("File created. Compiling...")
-		subp.Popen("i586-mingw32msvc-gcc -Wall -mwindows src/files/icon.ico output/template.c -o output/paygen-pl.exe > /dev/null 2>&1", shell=True).wait()
+		subp.Popen("i586-mingw32msvc-gcc -Wall -mwindows output/template.c -o output/paygen-pl.exe > /dev/null 2>&1", shell=True).wait()
 		PrintInfo("File paygen-pl.exe created in the output directory")
 		sleep(1)
 			
