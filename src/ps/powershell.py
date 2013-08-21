@@ -71,7 +71,7 @@ def generate_payload(payload,ipaddr,port):
 while 1:
 	try:
 		clear()
-		ps_moduleInfo()
+		menus.ps_moduleInfo()
 		
 		menus.powershell_menu()
 		selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))
