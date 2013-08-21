@@ -13,12 +13,6 @@ from src.core import menus
 
 iface = iface_ip()
 
-def moduleInfo():
-	print colours.bold + colours.cyan + \
-""" #################################################################
- # The payload requires the target to have powershell installed. #
- #################################################################""" + colours.reset
-
 def generate_payload(payload,ipaddr,port):
 	# grab the metasploit path
 	msf_path = msfpath()
@@ -77,7 +71,7 @@ def generate_payload(payload,ipaddr,port):
 while 1:
 	try:
 		clear()
-		moduleInfo()
+		ps_moduleInfo()
 		
 		menus.powershell_menu()
 		selection = raw_input(" %sSelection > %s" % (colours.bold, colours.reset))

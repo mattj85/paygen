@@ -213,6 +213,13 @@ def powershell_menu():
  [*] Hit ^c to go back
 """
 
+def ps_moduleInfo():
+	print main.colours.bold + main.colours.cyan + \
+""" #################################################################
+ # The payload requires the target to have powershell installed. #
+ #################################################################
+ """ + main.colours.reset
+
 def listener_menu():
 	print main.colours.bold + main.colours.green + """ Create MSF reverse_tcp listener""" + main.colours.reset + """
 	
