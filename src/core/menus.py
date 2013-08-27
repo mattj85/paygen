@@ -93,8 +93,8 @@ def linux_menu():
  [1] linux/x86/shell/reverse_tcp
  [2] linux/x86/shell/bind_tcp
  [3] linux/x86/meterpreter/reverse_tcp
- [4] linux/x86/meterpreter/bind_tcp"""
- 
+ [4] linux/x86/meterpreter/bind_tcp
+"""
 	print main.colours.bold + main.colours.green + """ Standard Linux Payloads""" + main.colours.reset + """
 
  [5] x86 bind shell
