@@ -99,6 +99,19 @@ def web_menu():
  [*] Hit ^C to go back
 """
 
+def linux_menu():
+	print main.colours.bold + main.colours.green + """ Linux MSF Payloads""" + main.colours.reset + """
+	
+ Please make a selection:
+	
+ [1] linux/x86/shell/reverse_tcp
+ [2] linux/x86/shell/bind_tcp
+ [3] linux/x86/meterpreter/reverse_tcp
+ [4] linux/x86/meterpreter/bind_tcp
+
+ [*] Hit ^C to go back
+"""
+
 def php_menu():
 	print main.colours.bold + main.colours.green + """ MSF PHP Payloads""" + main.colours.reset + """
 	

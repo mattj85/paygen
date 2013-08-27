@@ -162,8 +162,40 @@ def is_valid_ipv4(ip):
     """, re.VERBOSE | re.IGNORECASE)
     return pattern.match(ip) is not None
 
-def getPID():
-	return os.getpid()
+def convert2hex(ip, port):
+	
+	if is_valid_ipv4(ip):
+		# convert ip to hex
+		ip = ip.split(".")
+		ip = ' '.join((hex(int(i)) for i in ip)).split(" ")
+
+		hexip = []
+		for i in ip:
+			if len(i) == 3:
+				i = i.replace("0x","0x0")
+			hexip += i
+		
+		hexip = ''.join(hexip).replace("0x","\\x")
+	else:
+		hexip = "Invalid IP"
+	
+	# convert port to hex
+	port = hex(int(port)).replace("0x","")
+	if len(port) == 3:
+		port = "0" + port
+
+	counter = 0
+	mesh = ""
+	hexport = ""
+	for i in port:
+		mesh = mesh + i
+		counter = counter + 1
+		if counter == 2:
+			hexport = hexport + "\\x" + mesh
+			mesh = ""
+			counter = 0
+	
+	return hexip, hexport
 	
 def generate_random_string(low, high):
     length = random.randint(low, high)
