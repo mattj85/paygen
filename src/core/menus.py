@@ -74,20 +74,6 @@ def arch_menu():
  [2] 64bit
 """
 
-# linux payloads currently disabled
-def lin_menu():
-	print main.colours.bold + main.colours.green + """ MSF Linux Payloads""" + main.colours.reset + """
-	
- Please select a payload:
-	
- [1] meterpreter/reverse_tcp
- [2] meterpreter/bind_tcp
- [3] shell/reverse_tcp
- [4] shell/bind_tcp
-
- [*] Hit ^C to go back
-"""
-
 def web_menu():
 	print main.colours.bold + main.colours.green + """ MSF Web Payloads""" + main.colours.reset + """
 	
@@ -107,7 +93,12 @@ def linux_menu():
  [1] linux/x86/shell/reverse_tcp
  [2] linux/x86/shell/bind_tcp
  [3] linux/x86/meterpreter/reverse_tcp
- [4] linux/x86/meterpreter/bind_tcp
+ [4] linux/x86/meterpreter/bind_tcp"""
+ 
+	print main.colours.bold + main.colours.green + """ Standard Linux Payloads""" + main.colours.reset + """
+
+ [5] x86 bind shell
+ [6] x86 reverse shell
 
  [*] Hit ^C to go back
 """
