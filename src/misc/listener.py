@@ -66,7 +66,7 @@ def reverse_listener():
 
 	# start listener
 	PrintInfo("Setting up MSF reverse multi handler, please wait...")
-	subprocess.Popen("%s/msfconsole -r %s" % (msfpath(), rcfile), shell=True).wait()
+	subprocess.Popen("msfconsole -r %s" % (msfpath(), rcfile), shell=True).wait()
 
 	PrintInfo("Cleaning up...")
 	os.remove(rcfile)
@@ -121,7 +121,7 @@ def bind_listener():
 	# exploit the target
 	# they deserve it for not patching this!!!
 	PrintInfo("Setting up MSF reverse multi handler, please wait...")
-	subprocess.Popen("%s/msfconsole -r %s" % (msfpath(), rcfile), shell=True).wait()
+	subprocess.Popen("msfconsole -r %s" % (msfpath(), rcfile), shell=True).wait()
 
 	# clean up
 	print "\nCleaning up..."

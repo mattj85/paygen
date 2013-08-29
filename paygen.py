@@ -5,6 +5,7 @@
 import os
 from src.core import menus
 from src.core.main import *
+from src.core.symlinks import *
 from sys import exit, argv
 from time import sleep
 
@@ -28,6 +29,9 @@ else:
         if not os.path.exists("output/"):
             os.makedirs("output/")
 
+        # check for and create msf symlinks
+        createSymLinks()
+
         # banner
         clear()
         menus.show_banner()
@@ -48,9 +52,9 @@ else:
 			# *nix
             elif selection == '2':
                 try:
-                    reload(src.linux.linux_msf)
+                    reload(src.linux.menu)
                 except:
-                    import src.linux.linux_msf
+                    import src.linux.menu
 
             # php
             elif selection == '3':
@@ -78,6 +82,12 @@ else:
                     reload(src.modules.sql.sqlbrute)
                 except:
                     import src.modules.sql.sqlbrute
+
+            elif selection == '7':
+                try:
+                    reload(src.ps.psexecinject)
+                except:
+                    import src.ps.psexecinject
 
             # other options
             # launch msf listener

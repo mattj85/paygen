@@ -10,8 +10,8 @@ from sys import exit, platform
 # details
 class details:
 	authors = "Matt Jones & Jeff Markwart"
-	version = "3.1.2"
-	codename = "Cyberdelia"
+	version = "3.2"
+	codename = "Parker"
 
 # define some colours
 class colours:
@@ -77,7 +77,7 @@ def install_msf():
 		# pull metasploit
 		PrintInfo("Grabbing Metasploit")
 		tools_path = os.getenv('HOME')+"/tools"
-		subp.Popen("git clone https://github.com/rapid7/metasploit-framework.git %s/msf" % tools_path, shell=True).wait()
+		subp.Popen("git clone https://github.com/rapid7/metasploit-framework.git msf" % tools_path, shell=True).wait()
 
 	else:
 		PrintError("Auto MSF install is not supported on this platform")
@@ -85,7 +85,7 @@ def install_msf():
 
 # update metasploit
 def update_msf():
-	proc = subp.Popen('ruby %s/msfupdate' % msfpath(), shell=True, stdout=subp.PIPE)
+	proc = subp.Popen('ruby msfupdate' % msfpath(), shell=True, stdout=subp.PIPE)
 	output = proc.stdout.readlines()
 	for line in output:
 		print " [+] %s" % line.rstrip()
@@ -112,9 +112,10 @@ def default_lport():
 		for line in config:
 			match = re.match("DEFAULT_LPORT=", line)
 			if match:
-				lport = re.sub("\"", lport)
-				lport = re.sub("DEFAULT_LPORT=", lport)
-				return lport.rstrip()
+				lport = re.sub("\"", "", line)
+				lport = re.sub("DEFAULT_LPORT=", "", lport)
+	
+	return lport.rstrip()
 
 # standard paygen exit
 def PGExit():
@@ -196,6 +197,19 @@ def convert2hex(ip, port):
 			counter = 0
 	
 	return hexip, hexport
+	
+def connectInfo(pltype):
+	if pltype == "r":
+		ip = raw_input("\n Enter your local or remote ip (%s): " % iface_ip())
+		if ip == "":
+			ip = iface_ip()
+	else:
+		ip = ""
+	port = raw_input(" Enter a port (%s): " % default_lport())
+	if not port:
+		port = default_lport()
+			
+		return ip, port
 	
 def generate_random_string(low, high):
     length = random.randint(low, high)

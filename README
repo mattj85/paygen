@@ -9,7 +9,7 @@ effortlessly create payloads for multiple platforms.
 Required modules:
 python-pymssql
 pyton-mysqldb
-mingw32
+mingw32 & mingw32-64
 
 To get PayGen up and running you need to define the path to your metasploit
 installation in the config/paygen_config file.
@@ -19,12 +19,19 @@ installation in the config/paygen_config file.
 * Teensy Payloads
 * MSSQL xp_cmdshell interaction
 * java payloads
-* linux / osx payloads
+* linux / osx payloads (in progress)
 
 CHANGELOG
 
-13/08/2013 - Version 3.1.0
+28/08/2013 - Version 3.2 Codename: Parker
+* Added symlink creator for msf executables
+* PSexec powershell injector module
+	- Spawns an MSF listener in xterm
+	- Uses MSF psexec_command auxillary module (needs valid credentials)
+* Code tweaks
+* Bug fixes
 
+13/08/2013 - Version 3.1.0
 * Re-structured files / folders
 * Removed all msf listeners from each module. Focusing more on payload generation
   than metasploit integration

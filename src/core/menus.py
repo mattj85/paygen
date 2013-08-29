@@ -15,6 +15,7 @@ def pl_menu():
 
 """ + main.colours.bold + main.colours.green + """ Modules:""" + main.colours.reset + """
  [6] sqlbrute
+ [7] psexec powershell injector
 
 """ + main.colours.bold + main.colours.green + """ Other options:""" + main.colours.reset + """
  [l] start MSF listener
@@ -86,19 +87,26 @@ def web_menu():
 """
 
 def linux_menu():
+	print main.colours.bold + main.colours.green + """ Linux Payloads""" + main.colours.reset + """
+	
+ Please make a selection:
+	
+ [1] metasploit payloads
+ [2] standard payloads
+ [3] generate shellcode
+
+ [*] Hit ^C to go back
+"""
+
+def linux_msf_menu():
 	print main.colours.bold + main.colours.green + """ Linux MSF Payloads""" + main.colours.reset + """
 	
  Please make a selection:
 	
- [1] linux/x86/shell/reverse_tcp
- [2] linux/x86/shell/bind_tcp
- [3] linux/x86/meterpreter/reverse_tcp
- [4] linux/x86/meterpreter/bind_tcp
-"""
-	print main.colours.bold + main.colours.green + """ Standard Linux Payloads""" + main.colours.reset + """
-
- [5] x86 bind shell
- [6] x86 reverse shell
+ [1] linux/x86/meterpreter/reverse_tcp
+ [2] linux/x86/meterpreter/bind_tcp
+ [3] linux/x86/shell/reverse_tcp
+ [4] linux/x86/shell/bind_tcp
 
  [*] Hit ^C to go back
 """
@@ -116,20 +124,10 @@ def php_menu():
 """
 
 def asp_menu():
-	print main.colours.bold + main.colours.green + """ASP MSF payload generator""" + main.colours.reset + """
-
- ################################################################################
- # THIS ALLOWS YOU TO GENERATE AN ENCODED REVERSE METERPRETER PAYLOAD EMBEDED   #
- # IN AN ASP DOCUMENT. TO ACTIVATE THIS PAYLOAD YOU NEED TO OF PREVIOUSLY       #
- # COMPROMISED A WINDOWS BASED WEBSERVER. START YOUR MULTI HANDLER, UPLOAD THE  #
- # PAYLOAD AND NAVIGATE TO THE ASP PAGE IN YOUR WEB BROWERS. ONCE THE EMBDED    #
- # PAYLOAD IS EXECUTED YOU WILL HAVE A SEXY SESSION WAITING FOR YOU.            #
- ################################################################################
+	print main.colours.bold + main.colours.green + """ ASP MSF payload generator""" + main.colours.reset + """
 	
- Please select a payload: """ + main.colours.bold + main.colours.green + """
+ Please select a payload:
 
- [+] This creates an asp payload encoded with shikata_ga_nai """ + main.colours.reset + """
-	
  [1] meterpreter/reverse_tcp - encoded (default)
  [2] x64/meterpreter/reverse_tcp - encoded
 
@@ -216,6 +214,17 @@ def powershell_menu():
 
  [*] Hit ^c to go back
 """
+
+def psexec_menu():
+	print main.colours.bold + main.colours.green + """ PsExec Powershell injector""" + main.colours.reset + """
+
+ Choose payload:
+	
+ [1] windows/meterpreter/reverse_tcp
+ [2] windows/meterpreter/reverse_https (default)
+
+ [*] Hit ^c to go back
+""" 
 
 def ps_moduleInfo():
 	print main.colours.bold + main.colours.cyan + \

@@ -53,9 +53,9 @@ while 1:
 			# powershell based payloads
 			elif pltype == '7':
 				try: 
-					reload(src.ps.powershell)
+					reload(src.ps.psbatfile)
 				except: 
-					import src.ps.powershell
+					import src.ps.psbatfile
 
 			# return to main
 			break

